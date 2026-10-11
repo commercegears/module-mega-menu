@@ -1,0 +1,62 @@
+/* Mobile menu (below the breakpoint). BP is replaced by the breakpoint class. */
+.sw-mm.BP .sw-mm__all, .sw-mm.BP .sw-mm--desktop-only { display: none; }
+.sw-mm.BP .sw-mm__burger { display: inline-flex; align-items: center; padding: 8px; }
+.sw-mm.BP .sw-mm__drawer { color: var(--_panel-text); }
+.sw-mm--hyva.BP .sw-mm__drawer {
+    position: fixed; top: 0; bottom: 0; left: 0; z-index: 60; width: min(380px, 88vw);
+    display: flex; flex-direction: column; background: var(--_panel-bg);
+    box-shadow: 0 0 24px rgba(0, 0, 0, .2); transform: translateX(-100%); visibility: hidden;
+    transition: transform .25s ease, visibility 0s linear .25s;
+}
+.sw-mm--hyva.BP.sw-mm--drawer-open .sw-mm__drawer { transform: none; visibility: visible; transition: transform .25s ease; }
+.sw-mm--hyva.BP .sw-mm__backdrop {
+    position: fixed; inset: 0; z-index: 59; background: rgba(17, 24, 39, .45); opacity: 0; visibility: hidden;
+    transition: opacity .25s, visibility 0s linear .25s;
+}
+.sw-mm--hyva.BP.sw-mm--drawer-open .sw-mm__backdrop { opacity: 1; visibility: visible; transition: opacity .25s; }
+.sw-mm.BP .sw-mm__dhead {
+    display: flex; align-items: center; justify-content: space-between; padding: 8px 8px 8px 16px;
+    border-bottom: 1px solid var(--_line); font-weight: 700; font-size: 1.1em;
+}
+.sw-mm.BP .sw-mm__close { display: inline-flex; padding: 8px; }
+.sw-mm.BP .sw-mm__body { position: relative; overflow-x: hidden; }
+.sw-mm--hyva.BP .sw-mm__body { flex: 1 1 auto; overflow-y: auto; }
+.sw-mm.BP .sw-mm__row { border-bottom: 1px solid var(--_line); }
+.sw-mm.BP .sw-mm__toplink, .sw-mm.BP .sw-mm__heading, .sw-mm.BP .sw-mm__a {
+    flex: 1 1 auto; min-height: 48px; padding: 10px 16px;
+}
+.sw-mm.BP .sw-mm__toplink, .sw-mm.BP .sw-mm__heading { font-weight: 600; }
+.sw-mm.BP .sw-mm__toggle { flex: 0 0 52px; display: flex; align-items: center; justify-content: center; border-left: 1px solid var(--_line); }
+.sw-mm.BP .sw-mm__toggle--text { flex: 1 1 auto; justify-content: flex-start; gap: 8px; border-left: 0; padding: 10px 16px; min-height: 48px; }
+.sw-mm.BP .sw-mm__toggle--text .sw-mm__chevron { margin-left: auto; }
+.sw-mm.BP .sw-mm__viewall {
+    display: flex; align-items: center; min-height: 48px; padding: 10px 16px; font-weight: 600;
+    border-bottom: 1px solid var(--_line); color: inherit; text-decoration: underline;
+}
+.sw-mm.BP .sw-mm__content { padding: 16px; }
+.sw-mm.BP .sw-mm__content .sw-mm__image img { max-height: 220px; width: auto; }
+.sw-mm.BP .sw-mm__mhead { display: none; }
+/* drill-down: each level slides over its parent */
+.sw-mm--mob-drilldown.BP .sw-mm__chevron { transform: rotate(-90deg); }
+.sw-mm--mob-drilldown.BP .sw-mm__panel, .sw-mm--mob-drilldown.BP .sw-mm__sub {
+    position: absolute; top: 0; left: 0; right: 0; min-height: 100%; z-index: 1; background: var(--_panel-bg);
+    transform: translateX(100%); visibility: hidden; transition: transform .25s ease, visibility 0s linear .25s;
+}
+.sw-mm--mob-drilldown.BP .is-open > .sw-mm__panel, .sw-mm--mob-drilldown.BP .is-open > .sw-mm__sub {
+    transform: none; visibility: visible; transition: transform .25s ease;
+}
+.sw-mm--mob-drilldown.BP .sw-mm__mhead {
+    display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 16px 0 4px;
+    border-bottom: 1px solid var(--_line); background: rgba(0, 0, 0, .03);
+}
+.sw-mm--mob-drilldown.BP .sw-mm__back { display: inline-flex; align-items: center; gap: 4px; padding: 12px; font-weight: 600; }
+.sw-mm--mob-drilldown.BP .sw-mm__mtitle { margin-left: auto; font-weight: 700; text-align: right; }
+/* accordion: levels open below their parent */
+.sw-mm--mob-accordion.BP .sw-mm__panel, .sw-mm--mob-accordion.BP .sw-mm__sub { display: none; }
+.sw-mm--mob-accordion.BP .is-open > .sw-mm__panel, .sw-mm--mob-accordion.BP .is-open > .sw-mm__sub { display: block; }
+.sw-mm--mob-accordion.BP .is-open > .sw-mm__row .sw-mm__chevron { transform: rotate(180deg); }
+.sw-mm--mob-accordion.BP .sw-mm__panel { background: rgba(0, 0, 0, .03); }
+.sw-mm--mob-accordion.BP .sw-mm__cols .sw-mm__heading, .sw-mm--mob-accordion.BP .sw-mm__viewall { padding-left: 28px; }
+.sw-mm--mob-accordion.BP .sw-mm__sub--l2 .sw-mm__a { padding-left: 40px; font-weight: 400; }
+.sw-mm--mob-accordion.BP .sw-mm__sub--l3 .sw-mm__a { padding-left: 52px; }
+.sw-mm.BP .sw-mm__a { font-weight: 400; }

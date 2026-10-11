@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Softaware\MegaMenu\Model\ImageUploader" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">softaware/megamenu/tmp</argument>
+            <argument name="basePath" xsi:type="string">softaware/megamenu</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="png" xsi:type="string">png</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="webp" xsi:type="string">webp</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="png" xsi:type="string">image/png</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="webp" xsi:type="string">image/webp</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Softaware\MegaMenu\Controller\Adminhtml\Item\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Softaware\MegaMenu\Model\ImageUploader</argument>
+        </arguments>
+    </type>
+    <type name="Softaware\MegaMenu\Controller\Adminhtml\Item\Save">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Softaware\MegaMenu\Model\ImageUploader</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="softaware_megamenu_list" xsi:type="object">Softaware\MegaMenu\Console\Command\ListCommand</item>
+                <item name="softaware_megamenu_import" xsi:type="object">Softaware\MegaMenu\Console\Command\ImportCategoriesCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

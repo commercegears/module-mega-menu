@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+    Hyvä: added by Observer\AddLayoutHandle when the menu is enabled for the store view and the theme inherits from
+    a Hyva/* theme. Hyvä's header prints the block with the alias "topmenu" (topmenu_generic), which prints all its
+    children. Its two children (Hyvä's mobile and desktop menus) are removed and the mega menu becomes its only
+    child, so it appears exactly where Hyvä's menu was. The wrapper's own block cache and ESI time-to-live are
+    switched off because the mega menu block caches itself and carries the right cache tags. No theme file is changed.
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Softaware_MegaMenu::css/mega-menu.css"/>
+    </head>
+    <body>
+        <referenceBlock name="topmenu_mobile" remove="true"/>
+        <referenceBlock name="topmenu_desktop" remove="true"/>
+        <referenceBlock name="topmenu_generic">
+            <arguments>
+                <argument name="cache_lifetime" xsi:type="null"/>
+            </arguments>
+            <action method="setTtl">
+                <argument name="ttl" xsi:type="null"/>
+            </action>
+            <block class="Softaware\MegaMenu\Block\Menu" name="softaware.megamenu" template="Softaware_MegaMenu::menu.phtml">
+                <arguments>
+                    <argument name="sw_mm_theme" xsi:type="string">hyva</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

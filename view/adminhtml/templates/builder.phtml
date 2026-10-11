@@ -1,0 +1,116 @@
+<?php
+/**
+ * @var \Softaware\MegaMenu\Block\Adminhtml\Builder $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+declare(strict_types=1);
+
+$tree = $block->getTree();
+$stores = $block->getStores();
+$storeFilter = (int)$block->getRequest()->getParam('store');
+$canEdit = $block->canEdit();
+$canDelete = $block->canDelete();
+
+$renderItems = function (array $items, int $level) use (&$renderItems, $block, $escaper, $storeFilter, $canEdit, $canDelete): string {
+    $html = '';
+    foreach ($items as $row) {
+        $id = (int)$row['item_id'];
+        $storeIds = array_map('intval', $row['store_ids']);
+        $inStore = !$storeFilter || !$storeIds || in_array(0, $storeIds, true) || in_array($storeFilter, $storeIds, true);
+        [$status, $severity] = $block->getStatus($row);
+        $leaf = $row['item_type'] === 'category_tree';
+        $html .= '<li class="sw-mmb-item' . ($inStore ? '' : ' is-other-store') . '" data-id="' . $id . '"'
+            . ($leaf ? ' data-leaf="1"' : '') . '>'
+            . '<div class="sw-mmb-row">'
+            . ($canEdit ? '<span class="sw-mmb-handle" title="' . $escaper->escapeHtmlAttr(__('Drag to move')) . '" aria-hidden="true"></span>' : '')
+            . '<span class="sw-mmb-title">' . $escaper->escapeHtml($row['display_title'])
+            . (!empty($row['label_text']) ? ' <span class="sw-mmb-label">' . $escaper->escapeHtml($row['label_text']) . '</span>' : '')
+            . '</span>'
+            . '<span class="sw-mmb-meta">' . $escaper->escapeHtml($block->getTypeLabel((string)$row['item_type'])) . '</span>'
+            . '<span class="sw-mmb-meta sw-mmb-stores">' . $escaper->escapeHtml($block->getStoreLabel($storeIds)) . '</span>'
+            . '<span class="sw-mmb-status"><span class="' . $severity . '"><span>' . $escaper->escapeHtml($status) . '</span></span></span>'
+            . '<span class="sw-mmb-actions">';
+        if ($canEdit) {
+            $html .= '<button type="button" class="action-default sw-mmb-move" data-move="up" title="' . $escaper->escapeHtmlAttr(__('Move up')) . '">'
+                . '<span class="sw-mmb-sr">' . $escaper->escapeHtml(__('Move %1 up', $row['display_title'])) . '</span>&uarr;</button>'
+                . '<button type="button" class="action-default sw-mmb-move" data-move="down" title="' . $escaper->escapeHtmlAttr(__('Move down')) . '">'
+                . '<span class="sw-mmb-sr">' . $escaper->escapeHtml(__('Move %1 down', $row['display_title'])) . '</span>&darr;</button>'
+                . '<a class="action-default" href="' . $escaper->escapeUrl($block->getUrl('*/item/edit', ['id' => $id])) . '">' . $escaper->escapeHtml(__('Edit')) . '</a>';
+            if (!$leaf && $level < 3) {
+                $html .= '<a class="action-default" href="' . $escaper->escapeUrl($block->getUrl('*/item/new', ['parent' => $id])) . '">' . $escaper->escapeHtml(__('Add Child')) . '</a>';
+            }
+        }
+        if ($canDelete) {
+            $html .= '<button type="button" class="action-default sw-mmb-delete" data-url="'
+                . $escaper->escapeUrl($block->getUrl('*/item/delete', ['id' => $id])) . '" data-title="'
+                . $escaper->escapeHtmlAttr($row['display_title']) . '">' . $escaper->escapeHtml(__('Delete')) . '</button>';
+        }
+        $html .= '</span></div>';
+        if (!$leaf) {
+            $html .= '<ol class="sw-mmb-tree" data-level="' . ($level + 1) . '">' . $renderItems($row['children'], $level + 1) . '</ol>';
+        }
+        $html .= '</li>';
+    }
+    return $html;
+};
+?>
+<div class="sw-mmb" data-mage-init='<?= $escaper->escapeHtmlAttr(json_encode(['Softaware_MegaMenu/js/builder' => [
+    'saveUrl' => $block->getUrl('*/*/saveTree'),
+    'maxLevels' => 3,
+    'confirmDelete' => (string)__('Delete "%1" and all items below it?'),
+]])) ?>'>
+    <p class="sw-mmb-intro">
+        <?= $escaper->escapeHtml(__('Drag items to change their order or to place them below another item (three levels). Top-level items form the menu bar; the items below them fill the dropdown columns.')) ?>
+        <?php if (!$block->isEnabledAnywhere()): ?>
+            <strong><?= $escaper->escapeHtml(__('The mega menu is switched off in every store view.')) ?></strong>
+            <a href="<?= $escaper->escapeUrl($block->getUrl('adminhtml/system_config/edit', ['section' => 'softaware_megamenu'])) ?>"><?= $escaper->escapeHtml(__('Open the settings')) ?></a>
+        <?php endif ?>
+    </p>
+    <div class="sw-mmb-toolbar">
+        <form method="get" action="<?= $escaper->escapeUrl($block->getUrl('*/*/index')) ?>" class="sw-mmb-filter">
+            <label for="sw-mmb-store"><?= $escaper->escapeHtml(__('Highlight items of')) ?></label>
+            <select id="sw-mmb-store" name="store" class="admin__control-select">
+                <option value="0"><?= $escaper->escapeHtml(__('All Store Views')) ?></option>
+                <?php foreach ($stores as $storeId => $name): ?>
+                    <option value="<?= (int)$storeId ?>"<?= $storeId === $storeFilter ? ' selected' : '' ?>><?= $escaper->escapeHtml($name) ?></option>
+                <?php endforeach ?>
+            </select>
+            <noscript><button type="submit" class="action-default"><?= $escaper->escapeHtml(__('Apply')) ?></button></noscript>
+        </form>
+        <?php if ($canEdit): ?>
+            <div class="sw-mmb-buttons">
+                <form method="post" action="<?= $escaper->escapeUrl($block->getUrl('*/*/importCategories')) ?>">
+                    <input type="hidden" name="form_key" value="<?= $escaper->escapeHtmlAttr($block->getFormKey()) ?>">
+                    <input type="hidden" name="store" value="<?= (int)$storeFilter ?>">
+                    <button type="submit" class="action-default" title="<?= $escaper->escapeHtmlAttr(__('One item per top-level category, so you can order them among your own items. Categories that already have an item are skipped.')) ?>">
+                        <?= $escaper->escapeHtml(__('Add Top-Level Categories')) ?>
+                    </button>
+                </form>
+                <a class="action-default primary" href="<?= $escaper->escapeUrl($block->getUrl('*/item/new')) ?>"><?= $escaper->escapeHtml(__('Add Item')) ?></a>
+            </div>
+        <?php endif ?>
+    </div>
+
+    <?php if (!$tree): ?>
+        <div class="sw-mmb-empty">
+            <h2><?= $escaper->escapeHtml(__('No menu items yet')) ?></h2>
+            <p><?= $escaper->escapeHtml(__('Until you add items, every store view shows its category tree as a mega menu. Add items to mix categories, CMS pages and your own links, with dropdown content, labels and icons.')) ?></p>
+        </div>
+    <?php else: ?>
+        <div class="sw-mmb-head" aria-hidden="true">
+            <span><?= $escaper->escapeHtml(__('Item')) ?></span>
+            <span><?= $escaper->escapeHtml(__('Type')) ?></span>
+            <span><?= $escaper->escapeHtml(__('Store Views')) ?></span>
+            <span><?= $escaper->escapeHtml(__('Status')) ?></span>
+            <span><?= $escaper->escapeHtml(__('Actions')) ?></span>
+        </div>
+        <ol class="sw-mmb-tree sw-mmb-root" data-level="1"><?= /* @noEscape */ $renderItems($tree, 1) ?></ol>
+        <?php if ($canEdit): ?>
+            <div class="sw-mmb-savebar" hidden>
+                <span><?= $escaper->escapeHtml(__('The order has changed.')) ?></span>
+                <button type="button" class="action-default sw-mmb-cancel"><?= $escaper->escapeHtml(__('Discard')) ?></button>
+                <button type="button" class="action-primary sw-mmb-save"><?= $escaper->escapeHtml(__('Save Order')) ?></button>
+            </div>
+        <?php endif ?>
+    <?php endif ?>
+</div>

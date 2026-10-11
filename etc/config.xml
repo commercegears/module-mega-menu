@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <softaware_megamenu>
+            <general>
+                <enabled>0</enabled>
+                <depth>2</depth>
+                <view_all>1</view_all>
+            </general>
+            <layout>
+                <desktop_mode>horizontal</desktop_mode>
+                <hamburger_label>All Categories</hamburger_label>
+                <open_on>hover</open_on>
+                <mobile_mode>drilldown</mobile_mode>
+                <breakpoint>1024</breakpoint>
+                <sticky>0</sticky>
+            </layout>
+            <colours>
+                <bar_bg/>
+                <bar_text/>
+                <bar_hover/>
+                <panel_bg/>
+                <panel_text/>
+                <panel_heading/>
+                <link_hover/>
+                <label_bg>#d32f2f</label_bg>
+                <label_text>#ffffff</label_text>
+            </colours>
+        </softaware_megamenu>
+    </default>
+</config>

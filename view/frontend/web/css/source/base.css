@@ -1,0 +1,51 @@
+/* Softaware Mega Menu: shared rules (all widths). Built into ../mega-menu.css by the module's build script. */
+.sw-mm {
+    --_bar-bg: var(--sw-mm-bar-bg, transparent);
+    --_bar-text: var(--sw-mm-bar-text, inherit);
+    --_bar-hover: var(--sw-mm-bar-hover, inherit);
+    --_panel-bg: var(--sw-mm-panel-bg, #fff);
+    --_panel-text: var(--sw-mm-panel-text, #1f2937);
+    --_heading: var(--sw-mm-heading, #111827);
+    --_link-hover: var(--sw-mm-link-hover, inherit);
+    --_label-bg: var(--sw-mm-label-bg, #d32f2f);
+    --_label-text: var(--sw-mm-label-text, #fff);
+    --_line: rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+    line-height: 1.4;
+}
+.sw-mm *, .sw-mm *::before, .sw-mm *::after { box-sizing: inherit; }
+.sw-mm ul { list-style: none; margin: 0; padding: 0; }
+.sw-mm li { margin: 0; padding: 0; }
+.sw-mm a { text-decoration: none; }
+.sw-mm .sw-mm__burger, .sw-mm .sw-mm__close, .sw-mm .sw-mm__toggle, .sw-mm .sw-mm__back, .sw-mm .sw-mm__all {
+    font: inherit; font-weight: inherit; color: inherit; background: none; border: 0; border-radius: 0; box-shadow: none;
+    margin: 0; padding: 0; cursor: pointer; line-height: inherit; text-transform: none; letter-spacing: inherit;
+    text-align: left; -webkit-appearance: none; appearance: none;
+}
+.sw-mm .sw-mm__toggle:hover, .sw-mm .sw-mm__back:hover, .sw-mm .sw-mm__close:hover, .sw-mm .sw-mm__burger:hover {
+    background: none; border: 0; color: inherit; box-shadow: none;
+}
+.sw-mm a:focus-visible, .sw-mm button:focus-visible { outline: 2px solid currentColor; outline-offset: -2px; }
+.sw-mm .sw-mm__sr {
+    position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+.sw-mm__row { display: flex; align-items: stretch; }
+.sw-mm .sw-mm__toplink, .sw-mm .sw-mm__heading, .sw-mm .sw-mm__a { display: flex; align-items: center; gap: 8px; color: inherit; }
+.sw-mm__text { min-width: 0; }
+.sw-mm__icon { flex: 0 0 auto; width: 18px; height: 18px; object-fit: contain; }
+.sw-mm__chevron { flex: 0 0 auto; transition: transform .2s; }
+.sw-mm__label {
+    display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 11px; font-weight: 700; line-height: 16px;
+    text-transform: uppercase; letter-spacing: .02em; white-space: nowrap;
+    background: var(--_label-bg); color: var(--_label-text);
+}
+.sw-mm__content img, .sw-mm__image img { max-width: 100%; height: auto; display: block; }
+.sw-mm__image { margin-bottom: 12px; }
+.sw-mm__loading { display: block; padding: 12px 0; opacity: .7; }
+.sw-mm__content[aria-busy="true"] { min-height: 80px; }
+@media (prefers-reduced-motion: reduce) {
+    .sw-mm *, .sw-mm *::before, .sw-mm *::after { transition: none !important; }
+}
+/* Luma: Luma hides everything in a menu section except its own .navigation */
+.nav-sections-item-content > .sw-mm { display: block; }

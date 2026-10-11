@@ -1,0 +1,203 @@
+<?php
+/**
+ * Mega menu: one render for desktop and mobile, Luma and Hyvä. Behaviour: Softaware_MegaMenu::js/mega-menu.js.
+ *
+ * @var \Softaware\MegaMenu\Block\Menu $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+declare(strict_types=1);
+
+$nodes = $block->getNodes();
+if (!$nodes) {
+    return;
+}
+$config = $block->getConfig();
+$storeId = $block->getStoreId();
+$theme = $block->getTheme();
+$ownDrawer = $theme === 'hyva';
+$desktopMode = $config->getDesktopMode($storeId);
+$classes = [
+    'sw-mm',
+    'sw-mm--' . $theme,
+    'sw-mm--desk-' . $desktopMode,
+    'sw-mm--mob-' . $config->getMobileMode($storeId),
+    'sw-mm--bp-' . $config->getBreakpoint($storeId),
+    'sw-mm--open-' . $config->getOpenOn($storeId),
+];
+if ($config->isSticky($storeId)) {
+    $classes[] = 'sw-mm--sticky';
+}
+$chevron = '<svg class="sw-mm__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"'
+    . ' stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
+    . '<path d="m6 9 6 6 6-6"/></svg>';
+$back = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"'
+    . ' stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"/></svg>';
+$burger = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"'
+    . ' stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
+$close = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"'
+    . ' stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+
+/** Icon, text and label of an item. */
+$renderInner = static function (array $node) use ($escaper): string {
+    $inner = '';
+    if ($node['icon_url'] !== '') {
+        $inner .= '<img class="sw-mm__icon" src="' . $escaper->escapeUrl($node['icon_url'])
+            . '" alt="" width="18" height="18" loading="lazy">';
+    } elseif ($node['icon_svg'] !== '') {
+        $inner .= $node['icon_svg']; // fixed markup from Model\Menu\Icons
+    }
+    $inner .= '<span class="sw-mm__text">' . $escaper->escapeHtml($node['title']) . '</span>';
+    if (!empty($node['label'])) {
+        $style = [];
+        if ($node['label']['bg'] !== '') {
+            $style[] = 'background:' . $node['label']['bg'];
+        }
+        if ($node['label']['color'] !== '') {
+            $style[] = 'color:' . $node['label']['color'];
+        }
+        $inner .= '<span class="sw-mm__label"' . ($style ? ' style="' . $escaper->escapeHtmlAttr(implode(';', $style)) . '"' : '')
+            . '>' . $escaper->escapeHtml($node['label']['text']) . '</span>';
+    }
+    return $inner;
+};
+
+/** Link (or plain text) with icon and label. */
+$renderLabel = static function (array $node, string $class) use ($escaper, $renderInner): string {
+    $inner = $renderInner($node);
+    if ($node['url']) {
+        return '<a class="' . $class . '" href="' . $escaper->escapeUrl($node['url']) . '"'
+            . ($node['new_tab'] ? ' target="_blank" rel="noopener"' : '') . '>' . $inner . '</a>';
+    }
+    return '<span class="' . $class . ' sw-mm__nolink">' . $inner . '</span>';
+};
+
+/** Lists below a column heading (levels 2 and 3). */
+$renderSub = static function (array $node, int $level) use (&$renderSub, $renderLabel, $escaper, $chevron, $back): string {
+    if (!$node['children']) {
+        return '';
+    }
+    $id = 'sw-mm-s-' . $node['key'];
+    $html = '<div class="sw-mm__sub sw-mm__sub--l' . $level . '" id="' . $id . '">'
+        . '<div class="sw-mm__mhead"><button type="button" class="sw-mm__back">' . $back
+        . '<span>' . $escaper->escapeHtml(__('Back')) . '</span></button>'
+        . '<span class="sw-mm__mtitle">' . $escaper->escapeHtml($node['title']) . '</span></div>'
+        . '<ul class="sw-mm__links">';
+    foreach ($node['children'] as $child) {
+        $hasSub = (bool)$child['children'];
+        $html .= '<li class="sw-mm__li' . ($hasSub ? ' sw-mm__has-sub' : '') . ($child['class'] ? ' ' . $escaper->escapeHtmlAttr($child['class']) : '') . '">'
+            . '<div class="sw-mm__row">' . $renderLabel($child, 'sw-mm__a') ;
+        if ($hasSub) {
+            $html .= '<button type="button" class="sw-mm__toggle sw-mm__toggle--sub" aria-expanded="false" aria-controls="sw-mm-s-'
+                . $escaper->escapeHtmlAttr($child['key']) . '"><span class="sw-mm__sr">'
+                . $escaper->escapeHtml(__('Show submenu for %1', $child['title'])) . '</span>' . $chevron . '</button>';
+        }
+        $html .= '</div>' . $renderSub($child, $level + 1) . '</li>';
+    }
+    return $html . '</ul></div>';
+};
+?>
+<nav class="<?= $escaper->escapeHtmlAttr(implode(' ', $classes)) ?>"
+     aria-label="<?= $escaper->escapeHtmlAttr(__('Main menu')) ?>"
+     data-sw-mm
+     data-bp="<?= (int)$config->getBreakpoint($storeId) ?>"
+     data-open-on="<?= $escaper->escapeHtmlAttr($config->getOpenOn($storeId)) ?>"
+     data-mobile="<?= $escaper->escapeHtmlAttr($config->getMobileMode($storeId)) ?>"
+     data-theme="<?= $escaper->escapeHtmlAttr($theme) ?>"
+     <?php if ($style = $block->getStyleAttribute()): ?>style="<?= $escaper->escapeHtmlAttr($style) ?>"<?php endif ?>>
+    <?php if ($ownDrawer): ?>
+        <button type="button" class="sw-mm__burger" aria-expanded="false" aria-controls="sw-mm-drawer">
+            <?= /* @noEscape */ $burger ?><span class="sw-mm__sr"><?= $escaper->escapeHtml(__('Open menu')) ?></span>
+        </button>
+    <?php endif ?>
+    <div class="sw-mm__drawer" id="sw-mm-drawer" aria-label="<?= $escaper->escapeHtmlAttr(__('Menu')) ?>">
+        <?php if ($ownDrawer): ?>
+            <div class="sw-mm__dhead">
+                <span class="sw-mm__dtitle"><?= $escaper->escapeHtml(__('Menu')) ?></span>
+                <button type="button" class="sw-mm__close">
+                    <?= /* @noEscape */ $close ?><span class="sw-mm__sr"><?= $escaper->escapeHtml(__('Close menu')) ?></span>
+                </button>
+            </div>
+        <?php endif ?>
+        <?php if ($desktopMode === 'hamburger'): ?>
+            <button type="button" class="sw-mm__all" aria-expanded="false" aria-controls="sw-mm-body">
+                <?= /* @noEscape */ $burger ?><span><?= $escaper->escapeHtml($config->getHamburgerLabel($storeId)) ?></span>
+            </button>
+        <?php endif ?>
+        <div class="sw-mm__body" id="sw-mm-body">
+            <ul class="sw-mm__bar">
+                <?php foreach ($nodes as $node): ?>
+                    <?php $panel = $node['panel'] ?? null; $panelId = 'sw-mm-p-' . $node['key']; ?>
+                    <li class="sw-mm__top<?= $panel ? ' sw-mm__has-panel' : '' ?><?= $node['class'] ? ' ' . $escaper->escapeHtmlAttr($node['class']) : '' ?>">
+                        <div class="sw-mm__row">
+                            <?php if ($panel && !$node['url']): ?>
+                                <button type="button" class="sw-mm__toplink sw-mm__toggle sw-mm__toggle--top sw-mm__toggle--text"
+                                        aria-expanded="false" aria-controls="<?= $escaper->escapeHtmlAttr($panelId) ?>">
+                                    <?= /* @noEscape */ $renderInner($node) ?>
+                                    <?= /* @noEscape */ $chevron ?>
+                                </button>
+                            <?php else: ?>
+                                <?= /* @noEscape */ $renderLabel($node, 'sw-mm__toplink') ?>
+                                <?php if ($panel): ?>
+                                    <button type="button" class="sw-mm__toggle sw-mm__toggle--top" aria-expanded="false"
+                                            aria-controls="<?= $escaper->escapeHtmlAttr($panelId) ?>">
+                                        <span class="sw-mm__sr"><?= $escaper->escapeHtml(__('Show submenu for %1', $node['title'])) ?></span>
+                                        <?= /* @noEscape */ $chevron ?>
+                                    </button>
+                                <?php endif ?>
+                            <?php endif ?>
+                        </div>
+                        <?php if ($panel): ?>
+                            <div class="sw-mm__panel sw-mm__panel--<?= $escaper->escapeHtmlAttr($panel['width']) ?> sw-mm__panel--content-<?= $escaper->escapeHtmlAttr($panel['position']) ?>"
+                                 id="<?= $escaper->escapeHtmlAttr($panelId) ?>">
+                                <div class="sw-mm__mhead">
+                                    <button type="button" class="sw-mm__back"><?= /* @noEscape */ $back ?><span><?= $escaper->escapeHtml(__('Back')) ?></span></button>
+                                    <span class="sw-mm__mtitle"><?= $escaper->escapeHtml($node['title']) ?></span>
+                                </div>
+                                <div class="sw-mm__inner">
+                                    <?php if ($node['children'] || $panel['view_all']): ?>
+                                        <div class="sw-mm__main">
+                                            <?php if ($panel['view_all']): ?>
+                                                <a class="sw-mm__viewall" href="<?= $escaper->escapeUrl($node['url']) ?>"><?= $escaper->escapeHtml(__('View all %1', $node['title'])) ?></a>
+                                            <?php endif ?>
+                                            <?php if ($node['children']): ?>
+                                                <ul class="sw-mm__cols" style="--sw-mm-cols:<?= (int)$panel['columns'] ?>">
+                                                    <?php foreach ($node['children'] as $col): ?>
+                                                        <?php $hasSub = (bool)$col['children']; ?>
+                                                        <li class="sw-mm__col<?= $hasSub ? ' sw-mm__has-sub' : '' ?><?= $col['class'] ? ' ' . $escaper->escapeHtmlAttr($col['class']) : '' ?>">
+                                                            <div class="sw-mm__row">
+                                                                <?= /* @noEscape */ $renderLabel($col, 'sw-mm__heading') ?>
+                                                                <?php if ($hasSub): ?>
+                                                                    <button type="button" class="sw-mm__toggle sw-mm__toggle--sub" aria-expanded="false"
+                                                                            aria-controls="sw-mm-s-<?= $escaper->escapeHtmlAttr($col['key']) ?>">
+                                                                        <span class="sw-mm__sr"><?= $escaper->escapeHtml(__('Show submenu for %1', $col['title'])) ?></span>
+                                                                        <?= /* @noEscape */ $chevron ?>
+                                                                    </button>
+                                                                <?php endif ?>
+                                                            </div>
+                                                            <?= /* @noEscape */ $renderSub($col, 2) ?>
+                                                        </li>
+                                                    <?php endforeach ?>
+                                                </ul>
+                                            <?php endif ?>
+                                        </div>
+                                    <?php endif ?>
+                                    <?php if ($panel['lazy_url']): ?>
+                                        <div class="sw-mm__content" data-sw-mm-lazy="<?= $escaper->escapeUrl($panel['lazy_url']) ?>">
+                                            <span class="sw-mm__loading"><?= $escaper->escapeHtml(__('Loading...')) ?></span>
+                                        </div>
+                                    <?php elseif ($panel['content'] !== ''): ?>
+                                        <div class="sw-mm__content"><?= /* @noEscape */ $panel['content'] ?></div>
+                                    <?php endif ?>
+                                </div>
+                            </div>
+                        <?php endif ?>
+                    </li>
+                <?php endforeach ?>
+            </ul>
+        </div>
+    </div>
+    <?php if ($ownDrawer): ?>
+        <div class="sw-mm__backdrop"></div>
+    <?php endif ?>
+</nav>
+<script src="<?= $escaper->escapeUrl($block->getViewFileUrl('Softaware_MegaMenu::js/mega-menu.js')) ?>" defer></script>

@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">softaware_megamenu_item_form.softaware_megamenu_item_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Menu Item</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="Softaware\MegaMenu\Block\Adminhtml\Item\Edit\BackButton"/>
+            <button name="delete" class="Softaware\MegaMenu\Block\Adminhtml\Item\Edit\DeleteButton"/>
+            <button name="save_and_continue" class="Softaware\MegaMenu\Block\Adminhtml\Item\Edit\SaveAndContinueButton"/>
+            <button name="save" class="Softaware\MegaMenu\Block\Adminhtml\Item\Edit\SaveButton"/>
+        </buttons>
+        <namespace>softaware_megamenu_item_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>softaware_megamenu_item_form.softaware_megamenu_item_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="softaware_megamenu_item_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="softaware_megamenu/item/save"/>
+        </settings>
+        <dataProvider class="Softaware\MegaMenu\Ui\DataProvider\ItemFormDataProvider" name="softaware_megamenu_item_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>item_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <label translate="true">Item</label>
+            <collapsible>false</collapsible>
+        </settings>
+        <field name="item_id" formElement="input" sortOrder="1">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>item_id</dataScope>
+            </settings>
+        </field>
+        <field name="is_active" formElement="checkbox" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enabled</label>
+                <dataScope>is_active</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="item_type" formElement="select" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">category</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Type</label>
+                <notice translate="true">Category tree: all top-level categories (or the subcategories of the chosen category), each as its own item, kept up to date automatically.</notice>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>item_type</dataScope>
+                <switcherConfig>
+                    <rules>
+                        <rule name="0">
+                            <value>category_tree</value>
+                            <actions>
+                                <action name="0">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.category_id</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="1">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.cms_page_id</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.url</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.show_subcategories</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="4">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.open_new_tab</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="1">
+                            <value>category</value>
+                            <actions>
+                                <action name="0">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.category_id</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="1">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.cms_page_id</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.url</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.show_subcategories</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="4">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.open_new_tab</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="2">
+                            <value>cms_page</value>
+                            <actions>
+                                <action name="0">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.category_id</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.cms_page_id</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="2">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.url</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.show_subcategories</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.open_new_tab</target>
+                                    <callback>show</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="3">
+                            <value>url</value>
+                            <actions>
+                                <action name="0">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.category_id</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.cms_page_id</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.url</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="3">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.show_subcategories</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.open_new_tab</target>
+                                    <callback>show</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="4">
+                            <value>heading</value>
+                            <actions>
+                                <action name="0">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.category_id</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.cms_page_id</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.url</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.show_subcategories</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>softaware_megamenu_item_form.softaware_megamenu_item_form.general.open_new_tab</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                    </rules>
+                    <enabled>true</enabled>
+                </switcherConfig>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Softaware\MegaMenu\Model\Source\ItemType"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="title" formElement="input" sortOrder="30">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Title</label>
+                <notice translate="true">Leave empty to use the category or page name.</notice>
+                <validation>
+                    <rule name="validate-length" xsi:type="boolean">true</rule>
+                    <rule name="maximum-length-255" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>title</dataScope>
+            </settings>
+        </field>
+        <field name="category_id" formElement="select" sortOrder="40">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Category</label>
+                <notice translate="true">For a category tree, choose a category to show its subcategories, or leave empty for the store view's top-level categories.</notice>
+                <dataScope>category_id</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Softaware\MegaMenu\Model\Source\CategoryOptions"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="cms_page_id" formElement="select" sortOrder="50">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">CMS Page</label>
+                <dataScope>cms_page_id</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Softaware\MegaMenu\Model\Source\CmsPageOptions"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="url" formElement="input" sortOrder="60">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Link</label>
+                <notice translate="true">A full address (https://...) or a path in this store, for example sale.html or /customer/account/.</notice>
+                <validation>
+                    <rule name="validate-length" xsi:type="boolean">true</rule>
+                    <rule name="maximum-length-1024" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>url</dataScope>
+            </settings>
+        </field>
+        <field name="open_new_tab" formElement="checkbox" sortOrder="70">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Open in a New Tab</label>
+                <dataScope>open_new_tab</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="show_subcategories" formElement="checkbox" sortOrder="80">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Show Subcategories</label>
+                <notice translate="true">Lists the subcategories in the dropdown (levels: Settings, Subcategory Levels).</notice>
+                <dataScope>show_subcategories</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="parent_id" formElement="select" sortOrder="90">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Parent Item</label>
+                <notice translate="true">Top level: shown in the menu bar. Below a top-level item: a dropdown column heading. One level deeper: a link in that column.</notice>
+                <dataScope>parent_id</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Softaware\MegaMenu\Model\Source\ParentOptions"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="store_ids" formElement="multiselect" sortOrder="100">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>int</dataType>
+                <label translate="true">Store Views</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>store_ids</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="visibility" formElement="select" sortOrder="110">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">all</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Show On</label>
+                <notice translate="true">Hidden with CSS, so desktop and mobile share one cached page.</notice>
+                <dataScope>visibility</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Softaware\MegaMenu\Model\Source\Visibility"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="css_class" formElement="input" sortOrder="120">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">CSS Class</label>
+                <notice translate="true">Optional class names for your own styling.</notice>
+                <validation>
+                    <rule name="validate-length" xsi:type="boolean">true</rule>
+                    <rule name="maximum-length-255" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>css_class</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+    <fieldset name="dropdown" sortOrder="20">
+        <settings>
+            <label translate="true">Dropdown</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+        </settings>
+        <field name="columns" formElement="select" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">4</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Link Columns</label>
+                <notice translate="true">Columns for the subcategories and child items.</notice>
+                <dataScope>columns</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Softaware\MegaMenu\Model\Source\Columns"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="panel_width" formElement="select" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">full</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Dropdown Width</label>
+                <dataScope>panel_width</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Softaware\MegaMenu\Model\Source\PanelWidth"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="content_position" formElement="select" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">right</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Content Position</label>
+                <dataScope>content_position</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Softaware\MegaMenu\Model\Source\ContentPosition"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="content_block_id" formElement="select" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string"></item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">CMS Block</label>
+                <notice translate="true">A CMS block (made with Page Builder or the editor) shown in the dropdown.</notice>
+                <dataScope>content_block_id</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Softaware\MegaMenu\Model\Source\CmsBlockOptions"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="content_html" formElement="wysiwyg" sortOrder="50">
+            <settings>
+                <label translate="true">Own Content</label>
+                <notice translate="true">Shown in the dropdown after the CMS block. Uses Page Builder when it is installed, otherwise the editor.</notice>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+                <dataScope>content_html</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                        <rows>8</rows>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+        <field name="image" formElement="imageUploader" sortOrder="60">
+            <settings>
+                <label translate="true">Image</label>
+                <componentType>imageUploader</componentType>
+                <notice translate="true">Shown above the content, scaled to the content width.</notice>
+                <dataScope>image</dataScope>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <allowedExtensions>jpg jpeg png gif webp</allowedExtensions>
+                        <maxFileSize>2097152</maxFileSize>
+                        <uploaderConfig>
+                            <param xsi:type="string" name="url">softaware_megamenu/item/upload/param_name/image</param>
+                        </uploaderConfig>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+        <field name="image_alt" formElement="input" sortOrder="70">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Image Alternative Text</label>
+                <notice translate="true">Describes the image for screen readers. Empty: the item title.</notice>
+                <validation>
+                    <rule name="validate-length" xsi:type="boolean">true</rule>
+                    <rule name="maximum-length-255" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>image_alt</dataScope>
+            </settings>
+        </field>
+        <field name="image_link" formElement="input" sortOrder="80">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Image Link</label>
+                <notice translate="true">Optional: a full address or a path in this store.</notice>
+                <validation>
+                    <rule name="validate-length" xsi:type="boolean">true</rule>
+                    <rule name="maximum-length-1024" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>image_link</dataScope>
+            </settings>
+        </field>
+        <field name="content_lazy" formElement="checkbox" sortOrder="90">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Load Content When Opened</label>
+                <notice translate="true">The CMS block, own content and image load on first hover or tap instead of with every page. Keeps pages light when the content is large. The links are always in the page.</notice>
+                <dataScope>content_lazy</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="label_icon" sortOrder="30">
+        <settings>
+            <label translate="true">Label and Icon</label>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+        </settings>
+        <field name="label_text" formElement="input" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Label Text</label>
+                <notice translate="true">A short badge next to the title, for example New or Sale. Empty: no label.</notice>
+                <validation>
+                    <rule name="validate-length" xsi:type="boolean">true</rule>
+                    <rule name="maximum-length-64" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>label_text</dataScope>
+            </settings>
+        </field>
+        <field name="label_bg" formElement="colorPicker" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Label Background</label>
+                <notice translate="true">Empty: the default label colour from the settings.</notice>
+                <validation>
+                    <rule name="validate-color" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>label_bg</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorPickerMode>full</colorPickerMode>
+                        <colorFormat>hex</colorFormat>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="label_color" formElement="colorPicker" sortOrder="30">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Label Text Colour</label>
+                <notice translate="true">Empty: the default from the settings.</notice>
+                <validation>
+                    <rule name="validate-color" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>label_color</dataScope>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorPickerMode>full</colorPickerMode>
+                        <colorFormat>hex</colorFormat>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="label_from" formElement="date" sortOrder="40">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Show Label From</label>
+                <notice translate="true">Empty: no start date.</notice>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>label_from</dataScope>
+            </settings>
+        </field>
+        <field name="label_to" formElement="date" sortOrder="50">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Show Label Until</label>
+                <notice translate="true">Empty: no end date. A "Sale" label can end on its own.</notice>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>label_to</dataScope>
+            </settings>
+        </field>
+        <field name="icon" formElement="select" sortOrder="60">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string"></item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Icon</label>
+                <notice translate="true">A small line icon in the text colour.</notice>
+                <dataScope>icon</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Softaware\MegaMenu\Model\Source\Icon"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="icon_image" formElement="imageUploader" sortOrder="70">
+            <settings>
+                <label translate="true">Own Icon Image</label>
+                <componentType>imageUploader</componentType>
+                <notice translate="true">Replaces the built-in icon. Shown at 18 x 18 px.</notice>
+                <dataScope>icon_image</dataScope>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <allowedExtensions>jpg jpeg png gif webp</allowedExtensions>
+                        <maxFileSize>2097152</maxFileSize>
+                        <uploaderConfig>
+                            <param xsi:type="string" name="url">softaware_megamenu/item/upload/param_name/icon_image</param>
+                        </uploaderConfig>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="schedule" sortOrder="40">
+        <settings>
+            <label translate="true">Schedule</label>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+        </settings>
+        <field name="active_from" formElement="date" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Show From</label>
+                <notice translate="true">First day the item is shown (store time zone). Empty: no start date.</notice>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>active_from</dataScope>
+            </settings>
+        </field>
+        <field name="active_to" formElement="date" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Show Until</label>
+                <notice translate="true">Last day the item is shown. Empty: no end date.</notice>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>active_to</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+</form>

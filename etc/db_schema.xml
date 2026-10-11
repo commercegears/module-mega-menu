@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="softaware_megamenu_item" resource="default" engine="innodb" comment="Softaware Mega Menu Item">
+        <column xsi:type="int" name="item_id" unsigned="true" nullable="false" identity="true" comment="Item ID"/>
+        <column xsi:type="int" name="parent_id" unsigned="true" nullable="true" comment="Parent Item ID"/>
+        <column xsi:type="int" name="position" unsigned="false" nullable="false" default="0" comment="Position"/>
+        <column xsi:type="smallint" name="is_active" unsigned="true" nullable="false" default="1" comment="Is Active"/>
+        <column xsi:type="varchar" name="title" nullable="true" length="255" comment="Title"/>
+        <column xsi:type="varchar" name="item_type" nullable="false" length="32" default="category" comment="Item Type"/>
+        <column xsi:type="int" name="category_id" unsigned="true" nullable="true" comment="Category ID"/>
+        <column xsi:type="int" name="cms_page_id" unsigned="true" nullable="true" comment="CMS Page ID"/>
+        <column xsi:type="varchar" name="url" nullable="true" length="1024" comment="Custom URL"/>
+        <column xsi:type="smallint" name="open_new_tab" unsigned="true" nullable="false" default="0" comment="Open In New Tab"/>
+        <column xsi:type="smallint" name="show_subcategories" unsigned="true" nullable="false" default="1" comment="Show Subcategories"/>
+        <column xsi:type="varchar" name="visibility" nullable="false" length="16" default="all" comment="Visibility"/>
+        <column xsi:type="varchar" name="css_class" nullable="true" length="255" comment="CSS Class"/>
+        <column xsi:type="date" name="active_from" nullable="true" comment="Active From"/>
+        <column xsi:type="date" name="active_to" nullable="true" comment="Active To"/>
+        <column xsi:type="varchar" name="label_text" nullable="true" length="64" comment="Label Text"/>
+        <column xsi:type="varchar" name="label_bg" nullable="true" length="16" comment="Label Background"/>
+        <column xsi:type="varchar" name="label_color" nullable="true" length="16" comment="Label Text Colour"/>
+        <column xsi:type="date" name="label_from" nullable="true" comment="Label From"/>
+        <column xsi:type="date" name="label_to" nullable="true" comment="Label To"/>
+        <column xsi:type="varchar" name="icon" nullable="true" length="32" comment="Built-in Icon"/>
+        <column xsi:type="varchar" name="icon_image" nullable="true" length="255" comment="Icon Image"/>
+        <column xsi:type="smallint" name="columns" unsigned="true" nullable="false" default="4" comment="Columns"/>
+        <column xsi:type="varchar" name="panel_width" nullable="false" length="16" default="full" comment="Panel Width"/>
+        <column xsi:type="int" name="content_block_id" unsigned="true" nullable="true" comment="CMS Block ID"/>
+        <column xsi:type="mediumtext" name="content_html" nullable="true" comment="Panel Content"/>
+        <column xsi:type="varchar" name="content_position" nullable="false" length="16" default="right" comment="Content Position"/>
+        <column xsi:type="smallint" name="content_lazy" unsigned="true" nullable="false" default="0" comment="Load Content On First Open"/>
+        <column xsi:type="varchar" name="image" nullable="true" length="255" comment="Panel Image"/>
+        <column xsi:type="varchar" name="image_link" nullable="true" length="1024" comment="Panel Image Link"/>
+        <column xsi:type="varchar" name="image_alt" nullable="true" length="255" comment="Panel Image Alt Text"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="item_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_MEGAMENU_ITEM_PARENT_ID_SOFTAWARE_MEGAMENU_ITEM_ITEM_ID"
+                    table="softaware_megamenu_item" column="parent_id" referenceTable="softaware_megamenu_item"
+                    referenceColumn="item_id" onDelete="CASCADE"/>
+        <index referenceId="SOFTAWARE_MEGAMENU_ITEM_PARENT_ID_POSITION" indexType="btree">
+            <column name="parent_id"/>
+            <column name="position"/>
+        </index>
+    </table>
+    <table name="softaware_megamenu_item_store" resource="default" engine="innodb" comment="Softaware Mega Menu Item Store">
+        <column xsi:type="int" name="item_id" unsigned="true" nullable="false" comment="Item ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="item_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_MEGAMENU_ITEM_STORE_ITEM_ID_SOFTAWARE_MEGAMENU_ITEM_ITEM_ID"
+                    table="softaware_megamenu_item_store" column="item_id" referenceTable="softaware_megamenu_item"
+                    referenceColumn="item_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_MEGAMENU_ITEM_STORE_STORE_ID_STORE_STORE_ID"
+                    table="softaware_megamenu_item_store" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="SOFTAWARE_MEGAMENU_ITEM_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>

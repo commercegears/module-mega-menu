@@ -1,0 +1,32 @@
+{
+    "name": "softaware/module-mega-menu",
+    "description": "Mega menu for Magento 2 (Luma and Hyvä): category tree plus custom items, drag-and-drop menu builder, dropdown content, labels, icons, scheduling, lazy panels and accessible mobile navigation.",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.2.0||~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "~103.0.7",
+        "softaware/module-core": "^1.3",
+        "magento/module-backend": "*",
+        "magento/module-catalog": "*",
+        "magento/module-cms": "*",
+        "magento/module-config": "*",
+        "magento/module-cron": "*",
+        "magento/module-page-cache": "*",
+        "magento/module-store": "*",
+        "magento/module-theme": "*",
+        "magento/module-ui": "*"
+    },
+    "suggest": {
+        "hyva-themes/magento2-default-theme": "Hyvä storefront support is built in",
+        "magento/module-page-builder": "Edit dropdown content with Page Builder"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Softaware\\MegaMenu\\": ""
+        }
+    }
+}

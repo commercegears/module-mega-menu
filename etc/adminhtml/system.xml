@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="softaware_megamenu" translate="label" type="text" sortOrder="86" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Mega Menu</label>
+            <tab>softaware</tab>
+            <resource>Softaware_MegaMenu::config</resource>
+            <group id="general" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <attribute type="expanded">1</attribute>
+                <comment><![CDATA[Build the menu under <strong>Softaware &gt; Mega Menu &gt; Menu Builder</strong>. A store view without menu items shows its category tree automatically.]]></comment>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Replaces the theme's top menu (Luma and Hyvä) with the mega menu. When set to No, the theme's own menu is shown. Default: No.</comment>
+                </field>
+                <field id="depth" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Subcategory Levels</label>
+                    <source_model>Softaware\MegaMenu\Model\Source\Depth</source_model>
+                    <comment>How many levels of subcategories a category item shows in its dropdown. 1: column headings only, 2: headings with their links, 3: one more indented level. Default: 2.</comment>
+                </field>
+                <field id="view_all" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show "View All" Link</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Adds a "View all ..." link to the top of each category dropdown. Useful on touch screens and in the mobile menu. Default: Yes.</comment>
+                </field>
+            </group>
+            <group id="layout" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Layout and Behaviour</label>
+                <field id="desktop_mode" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Desktop Layout</label>
+                    <source_model>Softaware\MegaMenu\Model\Source\DesktopMode</source_model>
+                    <comment>Horizontal bar: every top-level item in one row. Hamburger: one button opens a vertical list with the dropdowns beside it, good for large catalogues. Default: Horizontal bar.</comment>
+                </field>
+                <field id="hamburger_label" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Hamburger Button Text</label>
+                    <validate>required-entry validate-no-html-tags validate-length maximum-length-40</validate>
+                    <comment>Default: All Categories.</comment>
+                    <depends><field id="desktop_mode">hamburger</field></depends>
+                </field>
+                <field id="open_on" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Open Dropdowns On</label>
+                    <source_model>Softaware\MegaMenu\Model\Source\OpenOn</source_model>
+                    <comment>Desktop only. With "Hover", dropdowns also open by click, tap and keyboard. Default: Hover.</comment>
+                </field>
+                <field id="mobile_mode" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Mobile Menu Style</label>
+                    <source_model>Softaware\MegaMenu\Model\Source\MobileMode</source_model>
+                    <comment>Drill-down: each level slides in with a Back button. Accordion: levels open below their parent. Default: Drill-down.</comment>
+                </field>
+                <field id="breakpoint" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Mobile Menu Below</label>
+                    <source_model>Softaware\MegaMenu\Model\Source\Breakpoint</source_model>
+                    <comment>Screen width at which the desktop menu turns into the mobile menu. The switch is made in CSS, so the page is rendered once for all devices. Default: 1024 px.</comment>
+                </field>
+                <field id="sticky" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Sticky Menu</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Keeps the menu at the top of the screen while scrolling (Hyvä: the whole header; Luma: the menu bar on desktop). Default: No.</comment>
+                </field>
+            </group>
+            <group id="colours" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Colours</label>
+                <comment>Leave a colour empty to keep the theme's colour.</comment>
+                <field id="bar_bg" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Menu Bar Background</label>
+                    <frontend_model>Softaware\MegaMenu\Block\Adminhtml\System\ColourField</frontend_model>
+                    <backend_model>Softaware\MegaMenu\Model\Config\Backend\Colour</backend_model>
+                    <validate>validate-no-html-tags</validate>
+                    <comment>Background of the top-level menu bar. Empty uses the theme's colour. Format: #rrggbb.</comment>
+                </field>
+                <field id="bar_text" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Menu Bar Text</label>
+                    <frontend_model>Softaware\MegaMenu\Block\Adminhtml\System\ColourField</frontend_model>
+                    <backend_model>Softaware\MegaMenu\Model\Config\Backend\Colour</backend_model>
+                    <validate>validate-no-html-tags</validate>
+                    <comment>Text and icon colour of the top-level items. Empty uses the theme's colour. Format: #rrggbb.</comment>
+                </field>
+                <field id="bar_hover" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Menu Bar Hover and Open</label>
+                    <frontend_model>Softaware\MegaMenu\Block\Adminhtml\System\ColourField</frontend_model>
+                    <backend_model>Softaware\MegaMenu\Model\Config\Backend\Colour</backend_model>
+                    <validate>validate-no-html-tags</validate>
+                    <comment>Text colour of a top-level item that is hovered, open or current. Empty uses the theme's colour. Format: #rrggbb.</comment>
+                </field>
+                <field id="panel_bg" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Dropdown Background</label>
+                    <frontend_model>Softaware\MegaMenu\Block\Adminhtml\System\ColourField</frontend_model>
+                    <backend_model>Softaware\MegaMenu\Model\Config\Backend\Colour</backend_model>
+                    <validate>validate-no-html-tags</validate>
+                    <comment>Background of dropdown panels and of the mobile menu. Empty: white. Format: #rrggbb.</comment>
+                </field>
+                <field id="panel_text" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Dropdown Text</label>
+                    <frontend_model>Softaware\MegaMenu\Block\Adminhtml\System\ColourField</frontend_model>
+                    <backend_model>Softaware\MegaMenu\Model\Config\Backend\Colour</backend_model>
+                    <validate>validate-no-html-tags</validate>
+                    <comment>Colour of the links in dropdown panels. Empty uses the theme's colour. Format: #rrggbb.</comment>
+                </field>
+                <field id="panel_heading" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Dropdown Headings</label>
+                    <frontend_model>Softaware\MegaMenu\Block\Adminhtml\System\ColourField</frontend_model>
+                    <backend_model>Softaware\MegaMenu\Model\Config\Backend\Colour</backend_model>
+                    <validate>validate-no-html-tags</validate>
+                    <comment>Colour of the column headings (second-level items). Empty uses the theme's colour. Format: #rrggbb.</comment>
+                </field>
+                <field id="link_hover" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Dropdown Link Hover</label>
+                    <frontend_model>Softaware\MegaMenu\Block\Adminhtml\System\ColourField</frontend_model>
+                    <backend_model>Softaware\MegaMenu\Model\Config\Backend\Colour</backend_model>
+                    <validate>validate-no-html-tags</validate>
+                    <comment>Colour of a hovered or focused link in a dropdown. Empty uses the theme's colour. Format: #rrggbb.</comment>
+                </field>
+                <field id="label_bg" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Default Label Background</label>
+                    <frontend_model>Softaware\MegaMenu\Block\Adminhtml\System\ColourField</frontend_model>
+                    <backend_model>Softaware\MegaMenu\Model\Config\Backend\Colour</backend_model>
+                    <validate>validate-no-html-tags</validate>
+                    <comment>Used when an item's label has no own background colour. Default: #d32f2f. Format: #rrggbb.</comment>
+                </field>
+                <field id="label_text" translate="label comment" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Default Label Text</label>
+                    <frontend_model>Softaware\MegaMenu\Block\Adminhtml\System\ColourField</frontend_model>
+                    <backend_model>Softaware\MegaMenu\Model\Config\Backend\Colour</backend_model>
+                    <validate>validate-no-html-tags</validate>
+                    <comment>Used when an item's label has no own text colour. Default: #ffffff. Format: #rrggbb.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
