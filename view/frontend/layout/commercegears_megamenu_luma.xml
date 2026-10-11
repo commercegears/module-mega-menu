@@ -12,7 +12,7 @@
         <referenceBlock name="store.menu">
             <block class="CommerceGears\MegaMenu\Block\Menu" name="commercegears.megamenu" template="CommerceGears_MegaMenu::menu.phtml" before="-">
                 <arguments>
-                    <argument name="sw_mm_theme" xsi:type="string">luma</argument>
+                    <argument name="commercegears_mm_theme" xsi:type="string">luma</argument>
                 </arguments>
             </block>
         </referenceBlock>

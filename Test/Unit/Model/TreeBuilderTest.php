@@ -62,7 +62,7 @@ class TreeBuilderTest extends TestCase
         $storeManager = $this->createMock(StoreManagerInterface::class);
         $storeManager->method('getStore')->willReturn($store);
         $url = $this->createMock(UrlInterface::class);
-        $url->method('getUrl')->willReturn('https://s.test/swmegamenu/panel/content/id/1/');
+        $url->method('getUrl')->willReturn('https://s.test/commercegears_megamenu/panel/content/id/1/');
 
         return new TreeBuilder(
             $factory,
@@ -99,7 +99,7 @@ class TreeBuilderTest extends TestCase
         $this->assertNotNull($women['panel']);
         $this->assertNull($result['nodes'][1]['panel'], 'no subcategories and no content: no dropdown');
         $this->assertContains('cat_c_13', $result['identities']);
-        $this->assertContains('sw_megamenu', $result['identities']);
+        $this->assertContains('commercegears_megamenu', $result['identities']);
     }
 
     public function testDepthLimitsSubcategories(): void
@@ -131,7 +131,7 @@ class TreeBuilderTest extends TestCase
         $this->assertTrue($women['panel']['view_all']);
         $help = $nodes[1];
         $this->assertNull($help['url']);
-        $this->assertSame('sw-mm--mobile-only', $help['class']);
+        $this->assertSame('commercegears-mm--mobile-only', $help['class']);
         $this->assertSame('', $help['panel']['content']);
         $this->assertNotNull($help['panel']['lazy_url']);
         $this->assertSame(['https://s.test/contact', null], array_column($help['children'], 'url'));

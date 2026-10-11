@@ -54,12 +54,12 @@ class ContentRenderer
             $block->setStoreId($storeId)->load($blockId);
             if ($block->getId() && $block->isActive()) {
                 $identities = array_merge($identities, $block->getIdentities());
-                $html .= '<div class="sw-mm__cms">' . $this->filter((string)$block->getContent(), $storeId) . '</div>';
+                $html .= '<div class="commercegears-mm__cms">' . $this->filter((string)$block->getContent(), $storeId) . '</div>';
             }
         }
         $own = trim((string)($item['content_html'] ?? ''));
         if ($own !== '') {
-            $html .= '<div class="sw-mm__html">' . $this->filter($own, $storeId) . '</div>';
+            $html .= '<div class="commercegears-mm__html">' . $this->filter($own, $storeId) . '</div>';
         }
         return ['html' => $html, 'identities' => $identities];
     }
@@ -103,7 +103,7 @@ class ContentRenderer
         if ($url !== null) {
             $img = '<a href="' . $this->escaper->escapeUrl($url) . '">' . $img . '</a>';
         }
-        return '<div class="sw-mm__image">' . $img . '</div>';
+        return '<div class="commercegears-mm__image">' . $img . '</div>';
     }
 
     private function filter(string $content, int $storeId): string

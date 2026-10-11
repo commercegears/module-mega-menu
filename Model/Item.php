@@ -12,7 +12,7 @@ use Magento\Framework\Model\AbstractModel;
  */
 class Item extends AbstractModel implements IdentityInterface
 {
-    public const CACHE_TAG = 'sw_megamenu';
+    public const CACHE_TAG = 'commercegears_megamenu';
 
     public const TYPE_CATEGORY_TREE = 'category_tree';
     public const TYPE_CATEGORY = 'category';

@@ -9,22 +9,22 @@
     var CLOSE_DELAY = 280;
 
     function init(nav) {
-        if (nav.swMegaMenu) {
+        if (nav.cgMegaMenu) {
             return;
         }
-        nav.swMegaMenu = true;
-        nav.classList.add('sw-mm--js');
+        nav.cgMegaMenu = true;
+        nav.classList.add('commercegears-mm--js');
 
         var bp = parseInt(nav.getAttribute('data-bp'), 10) || 1024;
         var openOn = nav.getAttribute('data-open-on') || 'hover';
         var mobileMode = nav.getAttribute('data-mobile') || 'drilldown';
         var theme = nav.getAttribute('data-theme') || 'luma';
         var mq = window.matchMedia('(min-width: ' + bp + 'px)');
-        var drawer = nav.querySelector('.sw-mm__drawer');
-        var body = nav.querySelector('.sw-mm__body');
-        var burger = nav.querySelector('.sw-mm__burger');
-        var allButton = nav.querySelector('.sw-mm__all');
-        var tops = Array.prototype.slice.call(nav.querySelectorAll('.sw-mm__top'));
+        var drawer = nav.querySelector('.commercegears-mm__drawer');
+        var body = nav.querySelector('.commercegears-mm__body');
+        var burger = nav.querySelector('.commercegears-mm__burger');
+        var allButton = nav.querySelector('.commercegears-mm__all');
+        var tops = Array.prototype.slice.call(nav.querySelectorAll('.commercegears-mm__top'));
         var timers = new WeakMap();
         var inertStack = [];
         var lastPointer = 'mouse';
@@ -34,12 +34,12 @@
         }
 
         function toggleOf(li) {
-            var row = li.querySelector(':scope > .sw-mm__row');
-            return row ? row.querySelector('.sw-mm__toggle') : null;
+            var row = li.querySelector(':scope > .commercegears-mm__row');
+            return row ? row.querySelector('.commercegears-mm__toggle') : null;
         }
 
         function submenuOf(li) {
-            return li.querySelector(':scope > .sw-mm__panel, :scope > .sw-mm__sub');
+            return li.querySelector(':scope > .commercegears-mm__panel, :scope > .commercegears-mm__sub');
         }
 
         function firstFocusable(el) {
@@ -62,13 +62,13 @@
 
         /* ---- lazy panel content ---- */
         function loadLazy(li) {
-            var box = li.querySelector(':scope > .sw-mm__panel .sw-mm__content[data-sw-mm-lazy]');
-            if (!box || box.swLoading) {
+            var box = li.querySelector(':scope > .commercegears-mm__panel .commercegears-mm__content[data-commercegears-mm-lazy]');
+            if (!box || box.cgLoading) {
                 return;
             }
-            box.swLoading = true;
+            box.cgLoading = true;
             box.setAttribute('aria-busy', 'true');
-            fetch(box.getAttribute('data-sw-mm-lazy'), {credentials: 'same-origin', headers: {'X-Requested-With': 'XMLHttpRequest'}})
+            fetch(box.getAttribute('data-commercegears-mm-lazy'), {credentials: 'same-origin', headers: {'X-Requested-With': 'XMLHttpRequest'}})
                 .then(function (response) {
                     if (!response.ok) {
                         throw new Error(String(response.status));
@@ -77,14 +77,14 @@
                 })
                 .then(function (html) {
                     box.innerHTML = html;
-                    box.removeAttribute('data-sw-mm-lazy');
+                    box.removeAttribute('data-commercegears-mm-lazy');
                     if (window.jQuery) {
                         window.jQuery(box).trigger('contentUpdated'); // Luma: initialise widgets in the content
                     }
                 })
                 .catch(function () {
                     box.innerHTML = '';
-                    box.swLoading = false;
+                    box.cgLoading = false;
                 })
                 .then(function () {
                     box.removeAttribute('aria-busy');
@@ -93,10 +93,10 @@
 
         /* ---- drill-down helpers: hide covered levels from keyboard and screen readers ---- */
         function coverLevel(li) {
-            var level = li.parentElement.closest('.sw-mm__panel, .sw-mm__sub, .sw-mm__body');
+            var level = li.parentElement.closest('.commercegears-mm__panel, .commercegears-mm__sub, .commercegears-mm__body');
             var list = [];
             var node = li;
-            var row = li.querySelector(':scope > .sw-mm__row');
+            var row = li.querySelector(':scope > .commercegears-mm__row');
             if (row) {
                 list.push(row);
             }
@@ -143,7 +143,7 @@
 
         /* ---- open and close ---- */
         function open(li, focusFirst) {
-            if (isDesktop() && li.classList.contains('sw-mm__top')) {
+            if (isDesktop() && li.classList.contains('commercegears-mm__top')) {
                 tops.forEach(function (other) {
                     if (other !== li) {
                         setExpanded(other, false);
@@ -151,12 +151,12 @@
                 });
             }
             setExpanded(li, true);
-            if (li.classList.contains('sw-mm__top')) {
+            if (li.classList.contains('commercegears-mm__top')) {
                 loadLazy(li);
             }
             if (!isDesktop() && mobileMode === 'drilldown') {
                 coverLevel(li);
-                var back = submenuOf(li) && submenuOf(li).querySelector(':scope > .sw-mm__mhead .sw-mm__back');
+                var back = submenuOf(li) && submenuOf(li).querySelector(':scope > .commercegears-mm__mhead .commercegears-mm__back');
                 if (back) {
                     window.setTimeout(function () {
                         back.focus();
@@ -207,7 +207,7 @@
 
         /* ---- desktop hover ---- */
         tops.forEach(function (li) {
-            if (!li.classList.contains('sw-mm__has-panel')) {
+            if (!li.classList.contains('commercegears-mm__has-panel')) {
                 return;
             }
             li.addEventListener('pointerenter', function (event) {
@@ -216,7 +216,7 @@
                     return;
                 }
                 cancelTimer(li);
-                var box = li.querySelector('.sw-mm__content[data-sw-mm-lazy]');
+                var box = li.querySelector('.commercegears-mm__content[data-commercegears-mm-lazy]');
                 if (box) {
                     loadLazy(li); // start loading while the pointer rests
                 }
@@ -252,7 +252,7 @@
 
         /* ---- clicks ---- */
         nav.addEventListener('click', function (event) {
-            var toggle = event.target.closest('.sw-mm__toggle');
+            var toggle = event.target.closest('.commercegears-mm__toggle');
             if (toggle && nav.contains(toggle)) {
                 var li = toggle.closest('li');
                 event.preventDefault();
@@ -263,7 +263,7 @@
                 }
                 return;
             }
-            var back = event.target.closest('.sw-mm__back');
+            var back = event.target.closest('.commercegears-mm__back');
             if (back) {
                 var owner = back.closest('li');
                 if (owner) {
@@ -271,11 +271,11 @@
                 }
                 return;
             }
-            var link = event.target.closest('.sw-mm__top > .sw-mm__row > a.sw-mm__toplink');
+            var link = event.target.closest('.commercegears-mm__top > .commercegears-mm__row > a.commercegears-mm__toplink');
             if (link && isDesktop()) {
-                var top = link.closest('.sw-mm__top');
+                var top = link.closest('.commercegears-mm__top');
                 // Click mode, or a touch screen with the desktop menu: the first tap opens the dropdown.
-                if (top.classList.contains('sw-mm__has-panel') && !top.classList.contains('is-open')
+                if (top.classList.contains('commercegears-mm__has-panel') && !top.classList.contains('is-open')
                     && (openOn === 'click' || lastPointer === 'touch' || lastPointer === 'pen')) {
                     event.preventDefault();
                     open(top, false);
@@ -296,42 +296,42 @@
             return tops.filter(function (li) {
                 return li.offsetParent !== null;
             }).map(function (li) {
-                return firstFocusable(li.querySelector(':scope > .sw-mm__row'));
+                return firstFocusable(li.querySelector(':scope > .commercegears-mm__row'));
             }).filter(Boolean);
         }
 
         nav.addEventListener('keydown', function (event) {
             var key = event.key;
             if (key === 'Escape' || key === 'Esc') {
-                var openLi = event.target.closest('li.is-open') || nav.querySelector('.sw-mm__top.is-open');
+                var openLi = event.target.closest('li.is-open') || nav.querySelector('.commercegears-mm__top.is-open');
                 if (openLi) {
                     event.preventDefault();
                     close(openLi, true);
                     return;
                 }
-                if (allButton && nav.classList.contains('sw-mm--all-open')) {
+                if (allButton && nav.classList.contains('commercegears-mm--all-open')) {
                     setAllOpen(false);
                     allButton.focus();
                     return;
                 }
-                if (nav.classList.contains('sw-mm--drawer-open')) {
+                if (nav.classList.contains('commercegears-mm--drawer-open')) {
                     event.preventDefault();
                     setDrawer(false);
                 }
                 return;
             }
             if (!isDesktop()) {
-                if (key === 'Tab' && nav.classList.contains('sw-mm--drawer-open')) {
+                if (key === 'Tab' && nav.classList.contains('commercegears-mm--drawer-open')) {
                     trapFocus(event);
                 }
                 return;
             }
-            var row = event.target.closest('.sw-mm__top > .sw-mm__row');
+            var row = event.target.closest('.commercegears-mm__top > .commercegears-mm__row');
             if (!row) {
                 return;
             }
             var li = row.parentElement;
-            var vertical = nav.classList.contains('sw-mm--desk-hamburger');
+            var vertical = nav.classList.contains('commercegears-mm--desk-hamburger');
             var nextKey = vertical ? 'ArrowDown' : 'ArrowRight';
             var prevKey = vertical ? 'ArrowUp' : 'ArrowLeft';
             var openKey = vertical ? 'ArrowRight' : 'ArrowDown';
@@ -344,7 +344,7 @@
                     event.preventDefault();
                     list[target].focus();
                 }
-            } else if (key === openKey && li.classList.contains('sw-mm__has-panel')) {
+            } else if (key === openKey && li.classList.contains('commercegears-mm__has-panel')) {
                 event.preventDefault();
                 open(li, true);
             }
@@ -376,11 +376,11 @@
             if (!burger) {
                 return;
             }
-            nav.classList.toggle('sw-mm--drawer-open', openIt);
+            nav.classList.toggle('commercegears-mm--drawer-open', openIt);
             burger.setAttribute('aria-expanded', openIt ? 'true' : 'false');
             document.documentElement.style.overflow = openIt ? 'hidden' : '';
             if (openIt) {
-                var closeButton = drawer.querySelector('.sw-mm__close');
+                var closeButton = drawer.querySelector('.commercegears-mm__close');
                 window.setTimeout(function () {
                     (closeButton || firstFocusable(drawer)).focus();
                 }, 30);
@@ -397,9 +397,9 @@
             if (openIt) {
                 // room to the right of the list for the dropdowns
                 var right = allButton.getBoundingClientRect().left + 280;
-                nav.style.setProperty('--sw-mm-hb-space', Math.max(320, document.documentElement.clientWidth - right - 16) + 'px');
+                nav.style.setProperty('--commercegears-mm-hb-space', Math.max(320, document.documentElement.clientWidth - right - 16) + 'px');
             }
-            nav.classList.toggle('sw-mm--all-open', openIt);
+            nav.classList.toggle('commercegears-mm--all-open', openIt);
             allButton.setAttribute('aria-expanded', openIt ? 'true' : 'false');
             if (!openIt) {
                 closeAll();
@@ -408,15 +408,15 @@
 
         if (burger) {
             burger.addEventListener('click', function () {
-                setDrawer(!nav.classList.contains('sw-mm--drawer-open'));
+                setDrawer(!nav.classList.contains('commercegears-mm--drawer-open'));
             });
-            var closeButton = nav.querySelector('.sw-mm__close');
+            var closeButton = nav.querySelector('.commercegears-mm__close');
             if (closeButton) {
                 closeButton.addEventListener('click', function () {
                     setDrawer(false);
                 });
             }
-            var backdrop = nav.querySelector('.sw-mm__backdrop');
+            var backdrop = nav.querySelector('.commercegears-mm__backdrop');
             if (backdrop) {
                 backdrop.addEventListener('click', function () {
                     setDrawer(false);
@@ -426,7 +426,7 @@
         if (allButton) {
             allButton.addEventListener('click', function (event) {
                 event.stopPropagation();
-                setAllOpen(!nav.classList.contains('sw-mm--all-open'));
+                setAllOpen(!nav.classList.contains('commercegears-mm--all-open'));
             });
         }
         if (theme === 'luma') {
@@ -457,7 +457,7 @@
             setAllOpen(false);
             if (burger) {
                 if (isDesktop()) {
-                    nav.classList.remove('sw-mm--drawer-open');
+                    nav.classList.remove('commercegears-mm--drawer-open');
                     burger.setAttribute('aria-expanded', 'false');
                     document.documentElement.style.overflow = '';
                     drawer.removeAttribute('role');
@@ -485,9 +485,9 @@
         });
         if (best) {
             best.setAttribute('aria-current', 'page');
-            var top = best.closest('.sw-mm__top');
+            var top = best.closest('.commercegears-mm__top');
             if (top) {
-                top.classList.add('sw-mm__top--current');
+                top.classList.add('commercegears-mm__top--current');
             }
         }
     }
@@ -502,7 +502,7 @@
     }
 
     function start() {
-        Array.prototype.forEach.call(document.querySelectorAll('[data-sw-mm]'), init);
+        Array.prototype.forEach.call(document.querySelectorAll('[data-commercegears-mm]'), init);
     }
 
     if (document.readyState === 'loading') {

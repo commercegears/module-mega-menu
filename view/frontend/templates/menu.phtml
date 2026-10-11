@@ -17,17 +17,17 @@ $theme = $block->getTheme();
 $ownDrawer = $theme === 'hyva';
 $desktopMode = $config->getDesktopMode($storeId);
 $classes = [
-    'sw-mm',
-    'sw-mm--' . $theme,
-    'sw-mm--desk-' . $desktopMode,
-    'sw-mm--mob-' . $config->getMobileMode($storeId),
-    'sw-mm--bp-' . $config->getBreakpoint($storeId),
-    'sw-mm--open-' . $config->getOpenOn($storeId),
+    'commercegears-mm',
+    'commercegears-mm--' . $theme,
+    'commercegears-mm--desk-' . $desktopMode,
+    'commercegears-mm--mob-' . $config->getMobileMode($storeId),
+    'commercegears-mm--bp-' . $config->getBreakpoint($storeId),
+    'commercegears-mm--open-' . $config->getOpenOn($storeId),
 ];
 if ($config->isSticky($storeId)) {
-    $classes[] = 'sw-mm--sticky';
+    $classes[] = 'commercegears-mm--sticky';
 }
-$chevron = '<svg class="sw-mm__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"'
+$chevron = '<svg class="commercegears-mm__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"'
     . ' stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
     . '<path d="m6 9 6 6 6-6"/></svg>';
 $back = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"'
@@ -41,12 +41,12 @@ $close = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="cu
 $renderInner = static function (array $node) use ($escaper): string {
     $inner = '';
     if ($node['icon_url'] !== '') {
-        $inner .= '<img class="sw-mm__icon" src="' . $escaper->escapeUrl($node['icon_url'])
+        $inner .= '<img class="commercegears-mm__icon" src="' . $escaper->escapeUrl($node['icon_url'])
             . '" alt="" width="18" height="18" loading="lazy">';
     } elseif ($node['icon_svg'] !== '') {
         $inner .= $node['icon_svg']; // fixed markup from Model\Menu\Icons
     }
-    $inner .= '<span class="sw-mm__text">' . $escaper->escapeHtml($node['title']) . '</span>';
+    $inner .= '<span class="commercegears-mm__text">' . $escaper->escapeHtml($node['title']) . '</span>';
     if (!empty($node['label'])) {
         $style = [];
         if ($node['label']['bg'] !== '') {
@@ -55,7 +55,7 @@ $renderInner = static function (array $node) use ($escaper): string {
         if ($node['label']['color'] !== '') {
             $style[] = 'color:' . $node['label']['color'];
         }
-        $inner .= '<span class="sw-mm__label"' . ($style ? ' style="' . $escaper->escapeHtmlAttr(implode(';', $style)) . '"' : '')
+        $inner .= '<span class="commercegears-mm__label"' . ($style ? ' style="' . $escaper->escapeHtmlAttr(implode(';', $style)) . '"' : '')
             . '>' . $escaper->escapeHtml($node['label']['text']) . '</span>';
     }
     return $inner;
@@ -68,7 +68,7 @@ $renderLabel = static function (array $node, string $class) use ($escaper, $rend
         return '<a class="' . $class . '" href="' . $escaper->escapeUrl($node['url']) . '"'
             . ($node['new_tab'] ? ' target="_blank" rel="noopener"' : '') . '>' . $inner . '</a>';
     }
-    return '<span class="' . $class . ' sw-mm__nolink">' . $inner . '</span>';
+    return '<span class="' . $class . ' commercegears-mm__nolink">' . $inner . '</span>';
 };
 
 /** Lists below a column heading (levels 2 and 3). */
@@ -76,19 +76,19 @@ $renderSub = static function (array $node, int $level) use (&$renderSub, $render
     if (!$node['children']) {
         return '';
     }
-    $id = 'sw-mm-s-' . $node['key'];
-    $html = '<div class="sw-mm__sub sw-mm__sub--l' . $level . '" id="' . $id . '">'
-        . '<div class="sw-mm__mhead"><button type="button" class="sw-mm__back">' . $back
+    $id = 'commercegears-mm-s-' . $node['key'];
+    $html = '<div class="commercegears-mm__sub commercegears-mm__sub--l' . $level . '" id="' . $id . '">'
+        . '<div class="commercegears-mm__mhead"><button type="button" class="commercegears-mm__back">' . $back
         . '<span>' . $escaper->escapeHtml(__('Back')) . '</span></button>'
-        . '<span class="sw-mm__mtitle">' . $escaper->escapeHtml($node['title']) . '</span></div>'
-        . '<ul class="sw-mm__links">';
+        . '<span class="commercegears-mm__mtitle">' . $escaper->escapeHtml($node['title']) . '</span></div>'
+        . '<ul class="commercegears-mm__links">';
     foreach ($node['children'] as $child) {
         $hasSub = (bool)$child['children'];
-        $html .= '<li class="sw-mm__li' . ($hasSub ? ' sw-mm__has-sub' : '') . ($child['class'] ? ' ' . $escaper->escapeHtmlAttr($child['class']) : '') . '">'
-            . '<div class="sw-mm__row">' . $renderLabel($child, 'sw-mm__a') ;
+        $html .= '<li class="commercegears-mm__li' . ($hasSub ? ' commercegears-mm__has-sub' : '') . ($child['class'] ? ' ' . $escaper->escapeHtmlAttr($child['class']) : '') . '">'
+            . '<div class="commercegears-mm__row">' . $renderLabel($child, 'commercegears-mm__a') ;
         if ($hasSub) {
-            $html .= '<button type="button" class="sw-mm__toggle sw-mm__toggle--sub" aria-expanded="false" aria-controls="sw-mm-s-'
-                . $escaper->escapeHtmlAttr($child['key']) . '"><span class="sw-mm__sr">'
+            $html .= '<button type="button" class="commercegears-mm__toggle commercegears-mm__toggle--sub" aria-expanded="false" aria-controls="commercegears-mm-s-'
+                . $escaper->escapeHtmlAttr($child['key']) . '"><span class="commercegears-mm__sr">'
                 . $escaper->escapeHtml(__('Show submenu for %1', $child['title'])) . '</span>' . $chevron . '</button>';
         }
         $html .= '</div>' . $renderSub($child, $level + 1) . '</li>';
@@ -98,78 +98,78 @@ $renderSub = static function (array $node, int $level) use (&$renderSub, $render
 ?>
 <nav class="<?= $escaper->escapeHtmlAttr(implode(' ', $classes)) ?>"
      aria-label="<?= $escaper->escapeHtmlAttr(__('Main menu')) ?>"
-     data-sw-mm
+     data-commercegears-mm
      data-bp="<?= (int)$config->getBreakpoint($storeId) ?>"
      data-open-on="<?= $escaper->escapeHtmlAttr($config->getOpenOn($storeId)) ?>"
      data-mobile="<?= $escaper->escapeHtmlAttr($config->getMobileMode($storeId)) ?>"
      data-theme="<?= $escaper->escapeHtmlAttr($theme) ?>"
      <?php if ($style = $block->getStyleAttribute()): ?>style="<?= $escaper->escapeHtmlAttr($style) ?>"<?php endif ?>>
     <?php if ($ownDrawer): ?>
-        <button type="button" class="sw-mm__burger" aria-expanded="false" aria-controls="sw-mm-drawer">
-            <?= /* @noEscape */ $burger ?><span class="sw-mm__sr"><?= $escaper->escapeHtml(__('Open menu')) ?></span>
+        <button type="button" class="commercegears-mm__burger" aria-expanded="false" aria-controls="commercegears-mm-drawer">
+            <?= /* @noEscape */ $burger ?><span class="commercegears-mm__sr"><?= $escaper->escapeHtml(__('Open menu')) ?></span>
         </button>
     <?php endif ?>
-    <div class="sw-mm__drawer" id="sw-mm-drawer" aria-label="<?= $escaper->escapeHtmlAttr(__('Menu')) ?>">
+    <div class="commercegears-mm__drawer" id="commercegears-mm-drawer" aria-label="<?= $escaper->escapeHtmlAttr(__('Menu')) ?>">
         <?php if ($ownDrawer): ?>
-            <div class="sw-mm__dhead">
-                <span class="sw-mm__dtitle"><?= $escaper->escapeHtml(__('Menu')) ?></span>
-                <button type="button" class="sw-mm__close">
-                    <?= /* @noEscape */ $close ?><span class="sw-mm__sr"><?= $escaper->escapeHtml(__('Close menu')) ?></span>
+            <div class="commercegears-mm__dhead">
+                <span class="commercegears-mm__dtitle"><?= $escaper->escapeHtml(__('Menu')) ?></span>
+                <button type="button" class="commercegears-mm__close">
+                    <?= /* @noEscape */ $close ?><span class="commercegears-mm__sr"><?= $escaper->escapeHtml(__('Close menu')) ?></span>
                 </button>
             </div>
         <?php endif ?>
         <?php if ($desktopMode === 'hamburger'): ?>
-            <button type="button" class="sw-mm__all" aria-expanded="false" aria-controls="sw-mm-body">
+            <button type="button" class="commercegears-mm__all" aria-expanded="false" aria-controls="commercegears-mm-body">
                 <?= /* @noEscape */ $burger ?><span><?= $escaper->escapeHtml($config->getHamburgerLabel($storeId)) ?></span>
             </button>
         <?php endif ?>
-        <div class="sw-mm__body" id="sw-mm-body">
-            <ul class="sw-mm__bar">
+        <div class="commercegears-mm__body" id="commercegears-mm-body">
+            <ul class="commercegears-mm__bar">
                 <?php foreach ($nodes as $node): ?>
-                    <?php $panel = $node['panel'] ?? null; $panelId = 'sw-mm-p-' . $node['key']; ?>
-                    <li class="sw-mm__top<?= $panel ? ' sw-mm__has-panel' : '' ?><?= $node['class'] ? ' ' . $escaper->escapeHtmlAttr($node['class']) : '' ?>">
-                        <div class="sw-mm__row">
+                    <?php $panel = $node['panel'] ?? null; $panelId = 'commercegears-mm-p-' . $node['key']; ?>
+                    <li class="commercegears-mm__top<?= $panel ? ' commercegears-mm__has-panel' : '' ?><?= $node['class'] ? ' ' . $escaper->escapeHtmlAttr($node['class']) : '' ?>">
+                        <div class="commercegears-mm__row">
                             <?php if ($panel && !$node['url']): ?>
-                                <button type="button" class="sw-mm__toplink sw-mm__toggle sw-mm__toggle--top sw-mm__toggle--text"
+                                <button type="button" class="commercegears-mm__toplink commercegears-mm__toggle commercegears-mm__toggle--top commercegears-mm__toggle--text"
                                         aria-expanded="false" aria-controls="<?= $escaper->escapeHtmlAttr($panelId) ?>">
                                     <?= /* @noEscape */ $renderInner($node) ?>
                                     <?= /* @noEscape */ $chevron ?>
                                 </button>
                             <?php else: ?>
-                                <?= /* @noEscape */ $renderLabel($node, 'sw-mm__toplink') ?>
+                                <?= /* @noEscape */ $renderLabel($node, 'commercegears-mm__toplink') ?>
                                 <?php if ($panel): ?>
-                                    <button type="button" class="sw-mm__toggle sw-mm__toggle--top" aria-expanded="false"
+                                    <button type="button" class="commercegears-mm__toggle commercegears-mm__toggle--top" aria-expanded="false"
                                             aria-controls="<?= $escaper->escapeHtmlAttr($panelId) ?>">
-                                        <span class="sw-mm__sr"><?= $escaper->escapeHtml(__('Show submenu for %1', $node['title'])) ?></span>
+                                        <span class="commercegears-mm__sr"><?= $escaper->escapeHtml(__('Show submenu for %1', $node['title'])) ?></span>
                                         <?= /* @noEscape */ $chevron ?>
                                     </button>
                                 <?php endif ?>
                             <?php endif ?>
                         </div>
                         <?php if ($panel): ?>
-                            <div class="sw-mm__panel sw-mm__panel--<?= $escaper->escapeHtmlAttr($panel['width']) ?> sw-mm__panel--content-<?= $escaper->escapeHtmlAttr($panel['position']) ?>"
+                            <div class="commercegears-mm__panel commercegears-mm__panel--<?= $escaper->escapeHtmlAttr($panel['width']) ?> commercegears-mm__panel--content-<?= $escaper->escapeHtmlAttr($panel['position']) ?>"
                                  id="<?= $escaper->escapeHtmlAttr($panelId) ?>">
-                                <div class="sw-mm__mhead">
-                                    <button type="button" class="sw-mm__back"><?= /* @noEscape */ $back ?><span><?= $escaper->escapeHtml(__('Back')) ?></span></button>
-                                    <span class="sw-mm__mtitle"><?= $escaper->escapeHtml($node['title']) ?></span>
+                                <div class="commercegears-mm__mhead">
+                                    <button type="button" class="commercegears-mm__back"><?= /* @noEscape */ $back ?><span><?= $escaper->escapeHtml(__('Back')) ?></span></button>
+                                    <span class="commercegears-mm__mtitle"><?= $escaper->escapeHtml($node['title']) ?></span>
                                 </div>
-                                <div class="sw-mm__inner">
+                                <div class="commercegears-mm__inner">
                                     <?php if ($node['children'] || $panel['view_all']): ?>
-                                        <div class="sw-mm__main">
+                                        <div class="commercegears-mm__main">
                                             <?php if ($panel['view_all']): ?>
-                                                <a class="sw-mm__viewall" href="<?= $escaper->escapeUrl($node['url']) ?>"><?= $escaper->escapeHtml(__('View all %1', $node['title'])) ?></a>
+                                                <a class="commercegears-mm__viewall" href="<?= $escaper->escapeUrl($node['url']) ?>"><?= $escaper->escapeHtml(__('View all %1', $node['title'])) ?></a>
                                             <?php endif ?>
                                             <?php if ($node['children']): ?>
-                                                <ul class="sw-mm__cols" style="--sw-mm-cols:<?= (int)$panel['columns'] ?>">
+                                                <ul class="commercegears-mm__cols" style="--commercegears-mm-cols:<?= (int)$panel['columns'] ?>">
                                                     <?php foreach ($node['children'] as $col): ?>
                                                         <?php $hasSub = (bool)$col['children']; ?>
-                                                        <li class="sw-mm__col<?= $hasSub ? ' sw-mm__has-sub' : '' ?><?= $col['class'] ? ' ' . $escaper->escapeHtmlAttr($col['class']) : '' ?>">
-                                                            <div class="sw-mm__row">
-                                                                <?= /* @noEscape */ $renderLabel($col, 'sw-mm__heading') ?>
+                                                        <li class="commercegears-mm__col<?= $hasSub ? ' commercegears-mm__has-sub' : '' ?><?= $col['class'] ? ' ' . $escaper->escapeHtmlAttr($col['class']) : '' ?>">
+                                                            <div class="commercegears-mm__row">
+                                                                <?= /* @noEscape */ $renderLabel($col, 'commercegears-mm__heading') ?>
                                                                 <?php if ($hasSub): ?>
-                                                                    <button type="button" class="sw-mm__toggle sw-mm__toggle--sub" aria-expanded="false"
-                                                                            aria-controls="sw-mm-s-<?= $escaper->escapeHtmlAttr($col['key']) ?>">
-                                                                        <span class="sw-mm__sr"><?= $escaper->escapeHtml(__('Show submenu for %1', $col['title'])) ?></span>
+                                                                    <button type="button" class="commercegears-mm__toggle commercegears-mm__toggle--sub" aria-expanded="false"
+                                                                            aria-controls="commercegears-mm-s-<?= $escaper->escapeHtmlAttr($col['key']) ?>">
+                                                                        <span class="commercegears-mm__sr"><?= $escaper->escapeHtml(__('Show submenu for %1', $col['title'])) ?></span>
                                                                         <?= /* @noEscape */ $chevron ?>
                                                                     </button>
                                                                 <?php endif ?>
@@ -182,11 +182,11 @@ $renderSub = static function (array $node, int $level) use (&$renderSub, $render
                                         </div>
                                     <?php endif ?>
                                     <?php if ($panel['lazy_url']): ?>
-                                        <div class="sw-mm__content" data-sw-mm-lazy="<?= $escaper->escapeUrl($panel['lazy_url']) ?>">
-                                            <span class="sw-mm__loading"><?= $escaper->escapeHtml(__('Loading...')) ?></span>
+                                        <div class="commercegears-mm__content" data-commercegears-mm-lazy="<?= $escaper->escapeUrl($panel['lazy_url']) ?>">
+                                            <span class="commercegears-mm__loading"><?= $escaper->escapeHtml(__('Loading...')) ?></span>
                                         </div>
                                     <?php elseif ($panel['content'] !== ''): ?>
-                                        <div class="sw-mm__content"><?= /* @noEscape */ $panel['content'] ?></div>
+                                        <div class="commercegears-mm__content"><?= /* @noEscape */ $panel['content'] ?></div>
                                     <?php endif ?>
                                 </div>
                             </div>
@@ -197,7 +197,7 @@ $renderSub = static function (array $node, int $level) use (&$renderSub, $render
         </div>
     </div>
     <?php if ($ownDrawer): ?>
-        <div class="sw-mm__backdrop"></div>
+        <div class="commercegears-mm__backdrop"></div>
     <?php endif ?>
 </nav>
 <script src="<?= $escaper->escapeUrl($block->getViewFileUrl('CommerceGears_MegaMenu::js/mega-menu.js')) ?>" defer></script>

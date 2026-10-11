@@ -3,8 +3,8 @@ define([], function () {
 
     /** Keeps the colour picker and the text field of a Mega Menu colour setting in step. */
     return function (config, wrapper) {
-        var text = wrapper.querySelector('.sw-mm-colour-text');
-        var picker = wrapper.querySelector('.sw-mm-colour-picker');
+        var text = wrapper.querySelector('.commercegears-mm-colour-text');
+        var picker = wrapper.querySelector('.commercegears-mm-colour-picker');
 
         if (!text || !picker) {
             return;

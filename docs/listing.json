@@ -1,0 +1,114 @@
+{
+    "tagline": "A drag-and-drop mega menu for Luma and Hyvä: your category tree plus your own items, with rich dropdowns, labels, dates and an accessible mobile menu.",
+    "key_features": [
+        "Drag-and-drop Menu Builder",
+        "Category tree plus your own links, pages and headings",
+        "Dropdowns with columns, CMS blocks, Page Builder and images",
+        "Labels and icons, with start and end dates",
+        "Dropdown content that loads on first open",
+        "Mobile drill-down or accordion",
+        "Keyboard and screen reader friendly",
+        "Hyvä and Luma in one package"
+    ],
+    "benefits": [
+        {
+            "icon": "cart",
+            "title": "Lead shoppers to the right aisle",
+            "text": "Show subcategories in columns next to a promotion image or CMS block, right where shoppers start browsing."
+        },
+        {
+            "icon": "bolt",
+            "title": "Light pages, one render",
+            "text": "Desktop and mobile switch in CSS, so the page is cached once. Heavy dropdown content can load on first open."
+        },
+        {
+            "icon": "clock",
+            "title": "Seasonal menus that run themselves",
+            "text": "Give items and labels start and end dates. A Sale tab appears and disappears on its own."
+        }
+    ],
+    "showcase": [
+        {
+            "label": "Desktop",
+            "title": "Dropdowns with columns and content",
+            "text": "Subcategories in up to six columns, with a CMS block, Page Builder content or an image beside or below them.",
+            "image": "docs/images/luma-desktop.png"
+        },
+        {
+            "label": "Hyvä",
+            "title": "Hyvä included, hamburger mode for big catalogues",
+            "text": "The same menu replaces Hyvä's header menu through layout only. The hamburger layout lists every category in one column.",
+            "image": "docs/images/hyva-hamburger.png"
+        },
+        {
+            "label": "Mobile",
+            "title": "Drill-down or accordion",
+            "text": "Below the width you choose, the menu becomes a drawer. Levels slide in with a Back button or open below their parent.",
+            "image": "docs/images/luma-mobile.png"
+        },
+        {
+            "label": "Menu Builder",
+            "title": "Arrange the menu by drag and drop",
+            "text": "Reorder and nest items in a tree, check which store views show them and see at a glance what is scheduled or ended.",
+            "image": "docs/images/admin-builder.png"
+        },
+        {
+            "label": "Menu items",
+            "title": "Everything about an item on one form",
+            "text": "Link, store views, desktop or mobile, dropdown columns and content, label, icon and dates.",
+            "image": "docs/images/admin-item.png"
+        },
+        {
+            "label": "Settings",
+            "title": "Layout and colours per store view",
+            "text": "Horizontal bar or hamburger, hover or click, mobile style and width, sticky menu and nine colours.",
+            "image": "docs/images/admin-settings.png"
+        }
+    ],
+    "feature_groups": [
+        {
+            "title": "Menu items",
+            "items": [
+                "Category tree that stays up to date",
+                "Single categories, CMS pages, custom links and headings",
+                "Three levels: menu bar, column heading, link",
+                "Store views and desktop or mobile per item",
+                "Show from and until dates"
+            ]
+        },
+        {
+            "title": "Dropdowns",
+            "items": [
+                "1 to 6 link columns, full width or fit content",
+                "CMS block and Page Builder or editor content",
+                "Image with link and alternative text",
+                "Labels with own colours and dates",
+                "Built-in icons or your own icon image"
+            ]
+        },
+        {
+            "title": "Storefront",
+            "items": [
+                "Horizontal bar or hamburger layout",
+                "Open on hover or click",
+                "Mobile drill-down or accordion",
+                "Sticky menu option",
+                "Keyboard navigation and screen reader support"
+            ]
+        },
+        {
+            "title": "Admin and performance",
+            "items": [
+                "Drag-and-drop Menu Builder",
+                "One render for all devices, full page cache friendly",
+                "Dropdown content that loads on first open",
+                "CLI: list the menu, import categories",
+                "Separate ACL permissions"
+            ]
+        }
+    ],
+    "demo": {
+        "storefront": [],
+        "admin": []
+    }
+}

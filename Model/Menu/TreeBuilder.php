@@ -254,7 +254,7 @@ class TreeBuilder
         if ($hasContent) {
             if (!empty($row['content_lazy'])) {
                 $lazyUrl = $this->urlBuilder->getUrl(
-                    'swmegamenu/panel/content',
+                    'commercegears_megamenu/panel/content',
                     ['id' => (int)$row['item_id'], '_scope' => $storeId, '_nosid' => true]
                 );
             } else {
@@ -292,7 +292,7 @@ class TreeBuilder
         $classes = [];
         $visibility = (string)($row['visibility'] ?? 'all');
         if ($visibility === 'desktop' || $visibility === 'mobile') {
-            $classes[] = 'sw-mm--' . $visibility . '-only';
+            $classes[] = 'commercegears-mm--' . $visibility . '-only';
         }
         $custom = preg_replace('/[^A-Za-z0-9_\- ]/', '', (string)($row['css_class'] ?? ''));
         if (trim((string)$custom) !== '') {

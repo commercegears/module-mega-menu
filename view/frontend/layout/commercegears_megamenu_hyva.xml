@@ -22,7 +22,7 @@
             </action>
             <block class="CommerceGears\MegaMenu\Block\Menu" name="commercegears.megamenu" template="CommerceGears_MegaMenu::menu.phtml">
                 <arguments>
-                    <argument name="sw_mm_theme" xsi:type="string">hyva</argument>
+                    <argument name="commercegears_mm_theme" xsi:type="string">hyva</argument>
                 </arguments>
             </block>
         </referenceBlock>

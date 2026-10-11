@@ -47,7 +47,7 @@ class Icons
             return '';
         }
         return sprintf(
-            '<svg class="sw-mm__icon" width="%1$d" height="%1$d" viewBox="0 0 24 24" fill="none" stroke="currentColor"'
+            '<svg class="commercegears-mm__icon" width="%1$d" height="%1$d" viewBox="0 0 24 24" fill="none" stroke="currentColor"'
             . ' stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">%2$s</svg>',
             $size,
             self::ICONS[$code][1]

@@ -11,22 +11,22 @@ define([
      */
     return function (config, element) {
         var $root = $(element);
-        var $tree = $root.find('.sw-mmb-root');
-        var $bar = $root.find('.sw-mmb-savebar');
+        var $tree = $root.find('.commercegears-mmb-root');
+        var $bar = $root.find('.commercegears-mmb-savebar');
         var original = $tree.html();
 
-        $root.find('#sw-mmb-store').on('change', function () {
+        $root.find('#commercegears-mmb-store').on('change', function () {
             this.form.submit();
         });
 
         function depthOf($li) {
-            return $li.parents('.sw-mmb-item').length + 1;
+            return $li.parents('.commercegears-mmb-item').length + 1;
         }
 
         function subtreeHeight($li) {
             var max = 0;
-            $li.find('.sw-mmb-item').each(function () {
-                max = Math.max(max, $(this).parentsUntil($li, '.sw-mmb-item').length + 1);
+            $li.find('.commercegears-mmb-item').each(function () {
+                max = Math.max(max, $(this).parentsUntil($li, '.commercegears-mmb-item').length + 1);
             });
             return max + 1;
         }
@@ -36,10 +36,10 @@ define([
         }
 
         function initSortable() {
-            $root.find('.sw-mmb-tree').sortable({
-                connectWith: '.sw-mmb-tree',
-                handle: '.sw-mmb-handle',
-                placeholder: 'sw-mmb-placeholder',
+            $root.find('.commercegears-mmb-tree').sortable({
+                connectWith: '.commercegears-mmb-tree',
+                handle: '.commercegears-mmb-handle',
+                placeholder: 'commercegears-mmb-placeholder',
                 tolerance: 'pointer',
                 cursor: 'grabbing',
                 start: function () {
@@ -47,7 +47,7 @@ define([
                 },
                 stop: function (event, ui) {
                     $root.removeClass('is-dragging');
-                    var $parentItem = ui.item.parent().closest('.sw-mmb-item');
+                    var $parentItem = ui.item.parent().closest('.commercegears-mmb-item');
                     var tooDeep = depthOf(ui.item) - 1 + subtreeHeight(ui.item) > config.maxLevels;
                     if (tooDeep || ($parentItem.length && $parentItem.data('leaf'))) {
                         $(this).sortable('cancel');
@@ -60,9 +60,9 @@ define([
 
         function serialise() {
             var rows = [];
-            $tree.find('.sw-mmb-item').each(function () {
+            $tree.find('.commercegears-mmb-item').each(function () {
                 var $li = $(this);
-                var $parent = $li.parent().closest('.sw-mmb-item');
+                var $parent = $li.parent().closest('.commercegears-mmb-item');
                 rows.push({
                     id: $li.data('id'),
                     parent: $parent.length ? $parent.data('id') : null,
@@ -74,10 +74,10 @@ define([
 
         initSortable();
 
-        $root.on('click', '.sw-mmb-move', function () {
-            var $li = $(this).closest('.sw-mmb-item');
+        $root.on('click', '.commercegears-mmb-move', function () {
+            var $li = $(this).closest('.commercegears-mmb-item');
             var up = $(this).data('move') === 'up';
-            var $sibling = up ? $li.prev('.sw-mmb-item') : $li.next('.sw-mmb-item');
+            var $sibling = up ? $li.prev('.commercegears-mmb-item') : $li.next('.commercegears-mmb-item');
             if (!$sibling.length) {
                 return;
             }
@@ -90,13 +90,13 @@ define([
             changed();
         });
 
-        $root.on('click', '.sw-mmb-cancel', function () {
+        $root.on('click', '.commercegears-mmb-cancel', function () {
             $tree.html(original);
             initSortable();
             $bar.prop('hidden', true);
         });
 
-        $root.on('click', '.sw-mmb-save', function () {
+        $root.on('click', '.commercegears-mmb-save', function () {
             var $button = $(this).prop('disabled', true);
             $.ajax({
                 url: config.saveUrl,
@@ -123,7 +123,7 @@ define([
             });
         });
 
-        $root.on('click', '.sw-mmb-delete', function () {
+        $root.on('click', '.commercegears-mmb-delete', function () {
             var url = $(this).data('url');
             confirm({
                 title: $t('Delete Item'),

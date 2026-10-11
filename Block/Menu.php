@@ -38,12 +38,12 @@ class Menu extends Template implements IdentityInterface
     public function getCacheKeyInfo(): array
     {
         return [
-            'SW_MEGAMENU',
+            'COMMERCEGEARS_MEGAMENU',
             $this->getStoreId(),
             $this->_design->getDesignTheme()->getId(),
             (int)$this->_request->isSecure(),
             $this->getTemplate(),
-            (string)$this->getData('sw_mm_theme'),
+            (string)$this->getData('commercegears_mm_theme'),
         ];
     }
 
@@ -59,7 +59,7 @@ class Menu extends Template implements IdentityInterface
 
     public function getTheme(): string
     {
-        return $this->getData('sw_mm_theme') === 'hyva' ? 'hyva' : 'luma';
+        return $this->getData('commercegears_mm_theme') === 'hyva' ? 'hyva' : 'luma';
     }
 
     public function getNodes(): array
@@ -104,10 +104,10 @@ class Menu extends Template implements IdentityInterface
     public function getStyleAttribute(): string
     {
         $map = [
-            'bar_bg' => '--sw-mm-bar-bg', 'bar_text' => '--sw-mm-bar-text', 'bar_hover' => '--sw-mm-bar-hover',
-            'panel_bg' => '--sw-mm-panel-bg', 'panel_text' => '--sw-mm-panel-text',
-            'panel_heading' => '--sw-mm-heading', 'link_hover' => '--sw-mm-link-hover',
-            'label_bg' => '--sw-mm-label-bg', 'label_text' => '--sw-mm-label-text',
+            'bar_bg' => '--commercegears-mm-bar-bg', 'bar_text' => '--commercegears-mm-bar-text', 'bar_hover' => '--commercegears-mm-bar-hover',
+            'panel_bg' => '--commercegears-mm-panel-bg', 'panel_text' => '--commercegears-mm-panel-text',
+            'panel_heading' => '--commercegears-mm-heading', 'link_hover' => '--commercegears-mm-link-hover',
+            'label_bg' => '--commercegears-mm-label-bg', 'label_text' => '--commercegears-mm-label-text',
         ];
         $style = [];
         foreach ($this->config->getColours($this->getStoreId()) as $field => $colour) {
