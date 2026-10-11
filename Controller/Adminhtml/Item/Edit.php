@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Controller\Adminhtml\Item;
+namespace CommerceGears\MegaMenu\Controller\Adminhtml\Item;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\ResultFactory;
-use Softaware\MegaMenu\Model\ItemFactory;
-use Softaware\MegaMenu\Model\ResourceModel\Item as ItemResource;
+use CommerceGears\MegaMenu\Model\ItemFactory;
+use CommerceGears\MegaMenu\Model\ResourceModel\Item as ItemResource;
 
 class Edit extends Action implements HttpGetActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_MegaMenu::items_save';
+    public const ADMIN_RESOURCE = 'CommerceGears_MegaMenu::items_save';
 
     public function __construct(
         Context $context,
@@ -46,7 +46,7 @@ class Edit extends Action implements HttpGetActionInterface
             $title = __('Edit Menu Item "%1"', $name);
         }
         $page = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $page->setActiveMenu('Softaware_MegaMenu::builder');
+        $page->setActiveMenu('CommerceGears_MegaMenu::builder');
         $page->getConfig()->getTitle()->prepend($title);
         return $page;
     }

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Block\Adminhtml\System;
+namespace CommerceGears\MegaMenu\Block\Adminhtml\System;
 
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;
@@ -18,7 +18,7 @@ class ColourField extends Field
         $html = parent::_getElementHtml($element);
         $value = (string)$element->getData('value');
         $swatch = preg_match('/^#[0-9a-f]{6}$/i', $value) ? $value : '#ffffff';
-        return '<div class="sw-mm-colour" data-mage-init=\'{"Softaware_MegaMenu/js/colour-field":{}}\'>'
+        return '<div class="sw-mm-colour" data-mage-init=\'{"CommerceGears_MegaMenu/js/colour-field":{}}\'>'
             . $html
             . '<input type="color" class="sw-mm-colour-picker" value="' . $this->escapeHtmlAttr($swatch) . '"'
             . ' aria-label="' . $this->escapeHtmlAttr(__('Pick a colour')) . '"'

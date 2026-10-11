@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \Softaware\MegaMenu\Block\Adminhtml\Builder $block
+ * @var \CommerceGears\MegaMenu\Block\Adminhtml\Builder $block
  * @var \Magento\Framework\Escaper $escaper
  */
 declare(strict_types=1);
@@ -54,7 +54,7 @@ $renderItems = function (array $items, int $level) use (&$renderItems, $block, $
     return $html;
 };
 ?>
-<div class="sw-mmb" data-mage-init='<?= $escaper->escapeHtmlAttr(json_encode(['Softaware_MegaMenu/js/builder' => [
+<div class="sw-mmb" data-mage-init='<?= $escaper->escapeHtmlAttr(json_encode(['CommerceGears_MegaMenu/js/builder' => [
     'saveUrl' => $block->getUrl('*/*/saveTree'),
     'maxLevels' => 3,
     'confirmDelete' => (string)__('Delete "%1" and all items below it?'),
@@ -63,7 +63,7 @@ $renderItems = function (array $items, int $level) use (&$renderItems, $block, $
         <?= $escaper->escapeHtml(__('Drag items to change their order or to place them below another item (three levels). Top-level items form the menu bar; the items below them fill the dropdown columns.')) ?>
         <?php if (!$block->isEnabledAnywhere()): ?>
             <strong><?= $escaper->escapeHtml(__('The mega menu is switched off in every store view.')) ?></strong>
-            <a href="<?= $escaper->escapeUrl($block->getUrl('adminhtml/system_config/edit', ['section' => 'softaware_megamenu'])) ?>"><?= $escaper->escapeHtml(__('Open the settings')) ?></a>
+            <a href="<?= $escaper->escapeUrl($block->getUrl('adminhtml/system_config/edit', ['section' => 'commercegears_megamenu'])) ?>"><?= $escaper->escapeHtml(__('Open the settings')) ?></a>
         <?php endif ?>
     </p>
     <div class="sw-mmb-toolbar">

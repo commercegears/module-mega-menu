@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model\Menu;
+namespace CommerceGears\MegaMenu\Model\Menu;
 
 use Magento\Cms\Helper\Page as PageHelper;
 use Magento\Cms\Model\ResourceModel\Page\CollectionFactory as PageCollectionFactory;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\MegaMenu\Model\Colour;
-use Softaware\MegaMenu\Model\Config;
-use Softaware\MegaMenu\Model\Item;
-use Softaware\MegaMenu\Model\ResourceModel\Item\CollectionFactory as ItemCollectionFactory;
-use Softaware\MegaMenu\Model\Schedule;
-use Softaware\MegaMenu\Model\UrlResolver;
+use CommerceGears\MegaMenu\Model\Colour;
+use CommerceGears\MegaMenu\Model\Config;
+use CommerceGears\MegaMenu\Model\Item;
+use CommerceGears\MegaMenu\Model\ResourceModel\Item\CollectionFactory as ItemCollectionFactory;
+use CommerceGears\MegaMenu\Model\Schedule;
+use CommerceGears\MegaMenu\Model\UrlResolver;
 
 /**
  * Builds the menu tree of a store view from the menu items (or from the category tree when the store view has

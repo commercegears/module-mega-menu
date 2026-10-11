@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Controller\Adminhtml\Builder;
+namespace CommerceGears\MegaMenu\Controller\Adminhtml\Builder;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\ResultFactory;
-use Softaware\MegaMenu\Model\CacheCleaner;
-use Softaware\MegaMenu\Model\Menu\TreeValidator;
-use Softaware\MegaMenu\Model\ResourceModel\Item as ItemResource;
+use CommerceGears\MegaMenu\Model\CacheCleaner;
+use CommerceGears\MegaMenu\Model\Menu\TreeValidator;
+use CommerceGears\MegaMenu\Model\ResourceModel\Item as ItemResource;
 
 /**
  * Saves the order and nesting from the drag and drop tree (JSON: [{id, parent, position}, ...]).
  */
 class SaveTree extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_MegaMenu::items_save';
+    public const ADMIN_RESOURCE = 'CommerceGears_MegaMenu::items_save';
 
     public function __construct(
         Context $context,

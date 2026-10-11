@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model;
+namespace CommerceGears\MegaMenu\Model;
 
 /**
  * Hex colour checks, shared by the settings, the item form and the storefront output.

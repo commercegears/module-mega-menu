@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Softaware_MegaMenu::menu" title="Mega Menu" translate="title" module="Softaware_MegaMenu"
-             sortOrder="62" parent="Softaware_Core::core" resource="Softaware_MegaMenu::megamenu"/>
-        <add id="Softaware_MegaMenu::builder" title="Menu Builder" translate="title" module="Softaware_MegaMenu"
-             sortOrder="10" parent="Softaware_MegaMenu::menu" action="softaware_megamenu/builder/index"
-             resource="Softaware_MegaMenu::items"/>
-        <add id="Softaware_MegaMenu::config" title="Settings" translate="title" module="Softaware_MegaMenu"
-             sortOrder="20" parent="Softaware_MegaMenu::menu"
-             action="adminhtml/system_config/edit/section/softaware_megamenu"
-             resource="Softaware_MegaMenu::config"/>
+        <add id="CommerceGears_MegaMenu::menu" title="Mega Menu" translate="title" module="CommerceGears_MegaMenu"
+             sortOrder="62" parent="CommerceGears_Core::core" resource="CommerceGears_MegaMenu::megamenu"/>
+        <add id="CommerceGears_MegaMenu::builder" title="Menu Builder" translate="title" module="CommerceGears_MegaMenu"
+             sortOrder="10" parent="CommerceGears_MegaMenu::menu" action="commercegears_megamenu/builder/index"
+             resource="CommerceGears_MegaMenu::items"/>
+        <add id="CommerceGears_MegaMenu::config" title="Settings" translate="title" module="CommerceGears_MegaMenu"
+             sortOrder="20" parent="CommerceGears_MegaMenu::menu"
+             action="adminhtml/system_config/edit/section/commercegears_megamenu"
+             resource="CommerceGears_MegaMenu::config"/>
     </menu>
 </config>

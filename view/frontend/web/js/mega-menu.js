@@ -1,5 +1,5 @@
 /**
- * Softaware Mega Menu: one script for Luma and Hyvä (no jQuery, RequireJS or Alpine needed).
+ * CommerceGears Mega Menu: one script for Luma and Hyvä (no jQuery, RequireJS or Alpine needed).
  * Disclosure navigation pattern: links stay links, every dropdown has a button with aria-expanded.
  */
 (function () {

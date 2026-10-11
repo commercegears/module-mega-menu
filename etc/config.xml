@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <softaware_megamenu>
+        <commercegears_megamenu>
             <general>
                 <enabled>0</enabled>
                 <depth>2</depth>
@@ -26,6 +26,6 @@
                 <label_bg>#d32f2f</label_bg>
                 <label_text>#ffffff</label_text>
             </colours>
-        </softaware_megamenu>
+        </commercegears_megamenu>
     </default>
 </config>

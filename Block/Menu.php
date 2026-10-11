@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Block;
+namespace CommerceGears\MegaMenu\Block;
 
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
-use Softaware\MegaMenu\Model\Config;
-use Softaware\MegaMenu\Model\Item;
-use Softaware\MegaMenu\Model\Menu\TreeBuilder;
+use CommerceGears\MegaMenu\Model\Config;
+use CommerceGears\MegaMenu\Model\Item;
+use CommerceGears\MegaMenu\Model\Menu\TreeBuilder;
 
 /**
  * The mega menu. One render for all screen sizes (CSS switches between desktop bar and mobile menu), cached per

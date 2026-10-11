@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model\ResourceModel\Item;
+namespace CommerceGears\MegaMenu\Model\ResourceModel\Item;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use Softaware\MegaMenu\Model\Item;
-use Softaware\MegaMenu\Model\ResourceModel\Item as ItemResource;
+use CommerceGears\MegaMenu\Model\Item;
+use CommerceGears\MegaMenu\Model\ResourceModel\Item as ItemResource;
 
 class Collection extends AbstractCollection
 {

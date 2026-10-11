@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model\Source;
+namespace CommerceGears\MegaMenu\Model\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
-use Softaware\MegaMenu\Model\ResourceModel\Item\CollectionFactory;
+use CommerceGears\MegaMenu\Model\ResourceModel\Item\CollectionFactory;
 
 /**
  * Items that can be a parent: top-level items and their direct children (the menu has three levels).

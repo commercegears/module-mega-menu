@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model\ResourceModel;
+namespace CommerceGears\MegaMenu\Model\ResourceModel;
 
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 class Item extends AbstractDb
 {
-    public const STORE_TABLE = 'softaware_megamenu_item_store';
+    public const STORE_TABLE = 'commercegears_megamenu_item_store';
 
     protected function _construct(): void
     {
-        $this->_init('softaware_megamenu_item', 'item_id');
+        $this->_init('commercegears_megamenu_item', 'item_id');
     }
 
     /**

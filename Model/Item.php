@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model;
+namespace CommerceGears\MegaMenu\Model;
 
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Model\AbstractModel;
@@ -24,7 +24,7 @@ class Item extends AbstractModel implements IdentityInterface
     ];
 
     protected $_cacheTag = self::CACHE_TAG;
-    protected $_eventPrefix = 'softaware_megamenu_item';
+    protected $_eventPrefix = 'commercegears_megamenu_item';
 
     protected function _construct(): void
     {

@@ -3,13 +3,13 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Softaware_Core::core">
-                    <resource id="Softaware_MegaMenu::megamenu" title="Mega Menu" translate="title" sortOrder="62">
-                        <resource id="Softaware_MegaMenu::items" title="Menu Builder" translate="title" sortOrder="10">
-                            <resource id="Softaware_MegaMenu::items_save" title="Add and Edit Items" translate="title" sortOrder="10"/>
-                            <resource id="Softaware_MegaMenu::items_delete" title="Delete Items" translate="title" sortOrder="20"/>
+                <resource id="CommerceGears_Core::core">
+                    <resource id="CommerceGears_MegaMenu::megamenu" title="Mega Menu" translate="title" sortOrder="62">
+                        <resource id="CommerceGears_MegaMenu::items" title="Menu Builder" translate="title" sortOrder="10">
+                            <resource id="CommerceGears_MegaMenu::items_save" title="Add and Edit Items" translate="title" sortOrder="10"/>
+                            <resource id="CommerceGears_MegaMenu::items_delete" title="Delete Items" translate="title" sortOrder="20"/>
                         </resource>
-                        <resource id="Softaware_MegaMenu::config" title="Settings" translate="title" sortOrder="20"/>
+                        <resource id="CommerceGears_MegaMenu::config" title="Settings" translate="title" sortOrder="20"/>
                     </resource>
                 </resource>
             </resource>

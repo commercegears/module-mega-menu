@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Block\Adminhtml;
+namespace CommerceGears\MegaMenu\Block\Adminhtml;
 
 use Magento\Backend\Block\Template;
 use Magento\Backend\Block\Template\Context;
 use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory;
 use Magento\Cms\Model\ResourceModel\Page\CollectionFactory as PageCollectionFactory;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
-use Softaware\MegaMenu\Model\Config;
-use Softaware\MegaMenu\Model\Item;
-use Softaware\MegaMenu\Model\ResourceModel\Item\CollectionFactory;
-use Softaware\MegaMenu\Model\Schedule;
-use Softaware\MegaMenu\Model\Source\ItemType;
+use CommerceGears\MegaMenu\Model\Config;
+use CommerceGears\MegaMenu\Model\Item;
+use CommerceGears\MegaMenu\Model\ResourceModel\Item\CollectionFactory;
+use CommerceGears\MegaMenu\Model\Schedule;
+use CommerceGears\MegaMenu\Model\Source\ItemType;
 
 /**
  * Menu Builder page: the item tree with drag and drop ordering.
@@ -166,12 +166,12 @@ class Builder extends Template
 
     public function canEdit(): bool
     {
-        return $this->_authorization->isAllowed('Softaware_MegaMenu::items_save');
+        return $this->_authorization->isAllowed('CommerceGears_MegaMenu::items_save');
     }
 
     public function canDelete(): bool
     {
-        return $this->_authorization->isAllowed('Softaware_MegaMenu::items_delete');
+        return $this->_authorization->isAllowed('CommerceGears_MegaMenu::items_delete');
     }
 
     private function displayTitle(array $row, array $names, array $pages): string

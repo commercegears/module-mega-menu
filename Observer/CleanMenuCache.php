@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Observer;
+namespace CommerceGears\MegaMenu\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
-use Softaware\MegaMenu\Model\CacheCleaner;
+use CommerceGears\MegaMenu\Model\CacheCleaner;
 
 /**
  * Settings saved: drop the cached menu so colours and layout changes show at once.

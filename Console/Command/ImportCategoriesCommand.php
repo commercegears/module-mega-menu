@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Console\Command;
+namespace CommerceGears\MegaMenu\Console\Command;
 
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\MegaMenu\Model\CategoryImporter;
+use CommerceGears\MegaMenu\Model\CategoryImporter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -24,7 +24,7 @@ class ImportCategoriesCommand extends Command
 
     protected function configure(): void
     {
-        $this->setName('softaware:megamenu:import-categories')
+        $this->setName('commercegears:megamenu:import-categories')
             ->setDescription('Adds a mega menu item for each top-level category of a store view')
             ->addOption('store', 's', InputOption::VALUE_REQUIRED, 'Store view code or ID whose root category is used (default: default store view)')
             ->addOption('only-this-store', null, InputOption::VALUE_NONE, 'Assign the new items to that store view only (default: all store views)');

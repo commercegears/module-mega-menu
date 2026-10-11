@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Console\Command;
+namespace CommerceGears\MegaMenu\Console\Command;
 
 use Magento\Framework\App\Area;
 use Magento\Framework\App\State;
 use Magento\Store\Model\App\Emulation;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\MegaMenu\Model\Menu\TreeBuilder;
+use CommerceGears\MegaMenu\Model\Menu\TreeBuilder;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -29,7 +29,7 @@ class ListCommand extends Command
 
     protected function configure(): void
     {
-        $this->setName('softaware:megamenu:list')
+        $this->setName('commercegears:megamenu:list')
             ->setDescription('Shows the mega menu of a store view as the storefront renders it today')
             ->addOption('store', 's', InputOption::VALUE_REQUIRED, 'Store view code or ID (default: default store view)');
     }

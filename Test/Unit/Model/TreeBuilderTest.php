@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Test\Unit\Model;
+namespace CommerceGears\MegaMenu\Test\Unit\Model;
 
 use Magento\Cms\Helper\Page as PageHelper;
 use Magento\Cms\Model\ResourceModel\Page\CollectionFactory as PageCollectionFactory;
@@ -11,13 +11,13 @@ use Magento\Framework\UrlInterface;
 use Magento\Store\Model\Store;
 use Magento\Store\Model\StoreManagerInterface;
 use PHPUnit\Framework\TestCase;
-use Softaware\MegaMenu\Model\Config;
-use Softaware\MegaMenu\Model\Menu\CategoryProvider;
-use Softaware\MegaMenu\Model\Menu\ContentRenderer;
-use Softaware\MegaMenu\Model\Menu\Icons;
-use Softaware\MegaMenu\Model\Menu\TreeBuilder;
-use Softaware\MegaMenu\Model\ResourceModel\Item\Collection;
-use Softaware\MegaMenu\Model\ResourceModel\Item\CollectionFactory;
+use CommerceGears\MegaMenu\Model\Config;
+use CommerceGears\MegaMenu\Model\Menu\CategoryProvider;
+use CommerceGears\MegaMenu\Model\Menu\ContentRenderer;
+use CommerceGears\MegaMenu\Model\Menu\Icons;
+use CommerceGears\MegaMenu\Model\Menu\TreeBuilder;
+use CommerceGears\MegaMenu\Model\ResourceModel\Item\Collection;
+use CommerceGears\MegaMenu\Model\ResourceModel\Item\CollectionFactory;
 
 class TreeBuilderTest extends TestCase
 {

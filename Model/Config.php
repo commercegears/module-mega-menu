@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model;
+namespace CommerceGears\MegaMenu\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
 /**
- * Store-view scoped settings of Stores > Configuration > Softaware > Mega Menu.
+ * Store-view scoped settings of Stores > Configuration > CommerceGears > Mega Menu.
  */
 class Config
 {
-    private const PREFIX = 'softaware_megamenu/';
+    private const PREFIX = 'commercegears_megamenu/';
     public const COLOUR_FIELDS = [
         'bar_bg', 'bar_text', 'bar_hover', 'panel_bg', 'panel_text', 'panel_heading', 'link_hover', 'label_bg', 'label_text',
     ];

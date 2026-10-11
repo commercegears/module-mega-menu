@@ -1,5 +1,5 @@
 {
-    "softaware_megamenu_item": {
+    "commercegears_megamenu_item": {
         "column": {
             "item_id": true,
             "parent_id": true,
@@ -36,25 +36,25 @@
             "updated_at": true
         },
         "index": {
-            "SOFTAWARE_MEGAMENU_ITEM_PARENT_ID_POSITION": true
+            "COMMERCEGEARS_MEGAMENU_ITEM_PARENT_ID_POSITION": true
         },
         "constraint": {
             "PRIMARY": true,
             "FK_EE3BFEC91326BB9B75BFB5F4B790AD1A": true
         }
     },
-    "softaware_megamenu_item_store": {
+    "commercegears_megamenu_item_store": {
         "column": {
             "item_id": true,
             "store_id": true
         },
         "index": {
-            "SOFTAWARE_MEGAMENU_ITEM_STORE_STORE_ID": true
+            "COMMERCEGEARS_MEGAMENU_ITEM_STORE_STORE_ID": true
         },
         "constraint": {
             "PRIMARY": true,
             "FK_1D62153EB6654C8ED82E01B700BF9CD5": true,
-            "SOFTAWARE_MEGAMENU_ITEM_STORE_STORE_ID_STORE_STORE_ID": true
+            "COMMERCEGEARS_MEGAMENU_ITEM_STORE_STORE_ID_STORE_STORE_ID": true
         }
     }
 }

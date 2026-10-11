@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model;
+namespace CommerceGears\MegaMenu\Model;
 
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\MegaMenu\Model\Menu\CategoryProvider;
-use Softaware\MegaMenu\Model\ResourceModel\Item as ItemResource;
-use Softaware\MegaMenu\Model\ResourceModel\Item\CollectionFactory;
+use CommerceGears\MegaMenu\Model\Menu\CategoryProvider;
+use CommerceGears\MegaMenu\Model\ResourceModel\Item as ItemResource;
+use CommerceGears\MegaMenu\Model\ResourceModel\Item\CollectionFactory;
 
 /**
  * Adds one category item per top-level category of a store view's root category, so they can be ordered

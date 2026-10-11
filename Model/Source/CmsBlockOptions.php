@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model\Source;
+namespace CommerceGears\MegaMenu\Model\Source;
 
 use Magento\Cms\Model\ResourceModel\Block\CollectionFactory;
 use Magento\Framework\Data\OptionSourceInterface;

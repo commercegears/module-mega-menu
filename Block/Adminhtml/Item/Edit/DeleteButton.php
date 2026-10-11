@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Block\Adminhtml\Item\Edit;
+namespace CommerceGears\MegaMenu\Block\Adminhtml\Item\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
@@ -9,7 +9,7 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
 {
     public function getButtonData(): array
     {
-        if (!$this->getItemId() || !$this->context->getAuthorization()->isAllowed('Softaware_MegaMenu::items_delete')) {
+        if (!$this->getItemId() || !$this->context->getAuthorization()->isAllowed('CommerceGears_MegaMenu::items_delete')) {
             return [];
         }
         return [

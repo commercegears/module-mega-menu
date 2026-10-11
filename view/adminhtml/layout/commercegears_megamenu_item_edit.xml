@@ -1,11 +1,9 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <head>
-        <css src="Softaware_MegaMenu::css/admin.css"/>
-    </head>
+    <update handle="editor"/>
     <body>
         <referenceContainer name="content">
-            <block class="Softaware\MegaMenu\Block\Adminhtml\Builder" name="softaware.megamenu.builder" template="Softaware_MegaMenu::builder.phtml"/>
+            <uiComponent name="commercegears_megamenu_item_form"/>
         </referenceContainer>
     </body>
 </page>

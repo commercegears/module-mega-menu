@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model\Menu;
+namespace CommerceGears\MegaMenu\Model\Menu;
 
-use Softaware\MegaMenu\Model\Item;
+use CommerceGears\MegaMenu\Model\Item;
 
 /**
  * Checks a tree posted by the menu builder: known items only, no cycles, at most three levels, and no children

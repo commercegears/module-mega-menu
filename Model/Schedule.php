@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model;
+namespace CommerceGears\MegaMenu\Model;
 
 /**
  * Date windows for items and labels. Dates are whole days in the store's time zone; both ends are inclusive.

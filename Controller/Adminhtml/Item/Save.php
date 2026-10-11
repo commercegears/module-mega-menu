@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Controller\Adminhtml\Item;
+namespace CommerceGears\MegaMenu\Controller\Adminhtml\Item;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -10,18 +10,18 @@ use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Stdlib\DateTime\Filter\Date as DateFilter;
-use Softaware\MegaMenu\Model\Colour;
-use Softaware\MegaMenu\Model\Item;
-use Softaware\MegaMenu\Model\ItemFactory;
-use Softaware\MegaMenu\Model\Menu\Icons;
-use Softaware\MegaMenu\Model\Menu\TreeValidator;
-use Softaware\MegaMenu\Model\ResourceModel\Item as ItemResource;
-use Softaware\MegaMenu\Model\UrlResolver;
-use Softaware\MegaMenu\Ui\DataProvider\ItemFormDataProvider;
+use CommerceGears\MegaMenu\Model\Colour;
+use CommerceGears\MegaMenu\Model\Item;
+use CommerceGears\MegaMenu\Model\ItemFactory;
+use CommerceGears\MegaMenu\Model\Menu\Icons;
+use CommerceGears\MegaMenu\Model\Menu\TreeValidator;
+use CommerceGears\MegaMenu\Model\ResourceModel\Item as ItemResource;
+use CommerceGears\MegaMenu\Model\UrlResolver;
+use CommerceGears\MegaMenu\Ui\DataProvider\ItemFormDataProvider;
 
 class Save extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_MegaMenu::items_save';
+    public const ADMIN_RESOURCE = 'CommerceGears_MegaMenu::items_save';
 
     private const FIELDS = [
         'is_active', 'item_type', 'title', 'category_id', 'cms_page_id', 'url', 'open_new_tab', 'show_subcategories',

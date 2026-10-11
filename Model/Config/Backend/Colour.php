@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model\Config\Backend;
+namespace CommerceGears\MegaMenu\Model\Config\Backend;
 
 use Magento\Framework\App\Config\Value;
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\MegaMenu\Model\Colour as ColourCheck;
+use CommerceGears\MegaMenu\Model\Colour as ColourCheck;
 
 /**
  * Accepts an empty value or a hex colour (#rgb or #rrggbb).

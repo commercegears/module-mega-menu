@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Cron;
+namespace CommerceGears\MegaMenu\Cron;
 
 use Magento\Framework\FlagManager;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\MegaMenu\Model\CacheCleaner;
-use Softaware\MegaMenu\Model\ResourceModel\Item\CollectionFactory;
-use Softaware\MegaMenu\Model\Schedule;
+use CommerceGears\MegaMenu\Model\CacheCleaner;
+use CommerceGears\MegaMenu\Model\ResourceModel\Item\CollectionFactory;
+use CommerceGears\MegaMenu\Model\Schedule;
 
 /**
  * Scheduled items and labels: when an item or label starts or ends (store time zone), the cached menu is dropped
@@ -16,7 +16,7 @@ use Softaware\MegaMenu\Model\Schedule;
  */
 class RefreshSchedule
 {
-    public const FLAG = 'softaware_megamenu_schedule';
+    public const FLAG = 'commercegears_megamenu_schedule';
 
     public function __construct(
         private readonly CollectionFactory $collectionFactory,

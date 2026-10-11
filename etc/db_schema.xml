@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <table name="softaware_megamenu_item" resource="default" engine="innodb" comment="Softaware Mega Menu Item">
+    <table name="commercegears_megamenu_item" resource="default" engine="innodb" comment="CommerceGears Mega Menu Item">
         <column xsi:type="int" name="item_id" unsigned="true" nullable="false" identity="true" comment="Item ID"/>
         <column xsi:type="int" name="parent_id" unsigned="true" nullable="true" comment="Parent Item ID"/>
         <column xsi:type="int" name="position" unsigned="false" nullable="false" default="0" comment="Position"/>
@@ -37,28 +37,28 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="item_id"/>
         </constraint>
-        <constraint xsi:type="foreign" referenceId="SOFTAWARE_MEGAMENU_ITEM_PARENT_ID_SOFTAWARE_MEGAMENU_ITEM_ITEM_ID"
-                    table="softaware_megamenu_item" column="parent_id" referenceTable="softaware_megamenu_item"
+        <constraint xsi:type="foreign" referenceId="COMMERCEGEARS_MEGAMENU_ITEM_PARENT_ID_COMMERCEGEARS_MEGAMENU_ITEM_ITEM_ID"
+                    table="commercegears_megamenu_item" column="parent_id" referenceTable="commercegears_megamenu_item"
                     referenceColumn="item_id" onDelete="CASCADE"/>
-        <index referenceId="SOFTAWARE_MEGAMENU_ITEM_PARENT_ID_POSITION" indexType="btree">
+        <index referenceId="COMMERCEGEARS_MEGAMENU_ITEM_PARENT_ID_POSITION" indexType="btree">
             <column name="parent_id"/>
             <column name="position"/>
         </index>
     </table>
-    <table name="softaware_megamenu_item_store" resource="default" engine="innodb" comment="Softaware Mega Menu Item Store">
+    <table name="commercegears_megamenu_item_store" resource="default" engine="innodb" comment="CommerceGears Mega Menu Item Store">
         <column xsi:type="int" name="item_id" unsigned="true" nullable="false" comment="Item ID"/>
         <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" comment="Store ID"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="item_id"/>
             <column name="store_id"/>
         </constraint>
-        <constraint xsi:type="foreign" referenceId="SOFTAWARE_MEGAMENU_ITEM_STORE_ITEM_ID_SOFTAWARE_MEGAMENU_ITEM_ITEM_ID"
-                    table="softaware_megamenu_item_store" column="item_id" referenceTable="softaware_megamenu_item"
+        <constraint xsi:type="foreign" referenceId="COMMERCEGEARS_MEGAMENU_ITEM_STORE_ITEM_ID_COMMERCEGEARS_MEGAMENU_ITEM_ITEM_ID"
+                    table="commercegears_megamenu_item_store" column="item_id" referenceTable="commercegears_megamenu_item"
                     referenceColumn="item_id" onDelete="CASCADE"/>
-        <constraint xsi:type="foreign" referenceId="SOFTAWARE_MEGAMENU_ITEM_STORE_STORE_ID_STORE_STORE_ID"
-                    table="softaware_megamenu_item_store" column="store_id" referenceTable="store"
+        <constraint xsi:type="foreign" referenceId="COMMERCEGEARS_MEGAMENU_ITEM_STORE_STORE_ID_STORE_STORE_ID"
+                    table="commercegears_megamenu_item_store" column="store_id" referenceTable="store"
                     referenceColumn="store_id" onDelete="CASCADE"/>
-        <index referenceId="SOFTAWARE_MEGAMENU_ITEM_STORE_STORE_ID" indexType="btree">
+        <index referenceId="COMMERCEGEARS_MEGAMENU_ITEM_STORE_STORE_ID" indexType="btree">
             <column name="store_id"/>
         </index>
     </table>

@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Test\Unit\Model;
+namespace CommerceGears\MegaMenu\Test\Unit\Model;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use Softaware\MegaMenu\Model\Colour;
-use Softaware\MegaMenu\Model\Menu\TreeValidator;
-use Softaware\MegaMenu\Model\Schedule;
-use Softaware\MegaMenu\Model\UrlResolver;
+use CommerceGears\MegaMenu\Model\Colour;
+use CommerceGears\MegaMenu\Model\Menu\TreeValidator;
+use CommerceGears\MegaMenu\Model\Schedule;
+use CommerceGears\MegaMenu\Model\UrlResolver;
 
 class PureLogicTest extends TestCase
 {

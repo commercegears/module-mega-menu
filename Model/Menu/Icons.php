@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model\Menu;
+namespace CommerceGears\MegaMenu\Model\Menu;
 
 /**
  * Small built-in line icons (24 x 24, stroke = currentColor), so a menu item can get an icon without an upload.

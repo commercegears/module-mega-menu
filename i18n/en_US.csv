@@ -149,7 +149,7 @@
 "Used when an item's label has no own background colour. Default: #d32f2f. Format: #rrggbb.","Used when an item's label has no own background colour. Default: #d32f2f. Format: #rrggbb."
 "Default Label Text","Default Label Text"
 "Used when an item's label has no own text colour. Default: #ffffff. Format: #rrggbb.","Used when an item's label has no own text colour. Default: #ffffff. Format: #rrggbb."
-"Build the menu under <strong>Softaware &gt; Mega Menu &gt; Menu Builder</strong>. A store view without menu items shows its category tree automatically.","Build the menu under <strong>Softaware &gt; Mega Menu &gt; Menu Builder</strong>. A store view without menu items shows its category tree automatically."
+"Build the menu under <strong>CommerceGears &gt; Mega Menu &gt; Menu Builder</strong>. A store view without menu items shows its category tree automatically.","Build the menu under <strong>CommerceGears &gt; Mega Menu &gt; Menu Builder</strong>. A store view without menu items shows its category tree automatically."
 "Category tree: all top-level categories (or the subcategories of the chosen category), each as its own item, kept up to date automatically.","Category tree: all top-level categories (or the subcategories of the chosen category), each as its own item, kept up to date automatically."
 "Title","Title"
 "Leave empty to use the category or page name.","Leave empty to use the category or page name."

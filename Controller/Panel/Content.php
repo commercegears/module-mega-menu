@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Controller\Panel;
+namespace CommerceGears\MegaMenu\Controller\Panel;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\RequestInterface;
@@ -10,12 +10,12 @@ use Magento\Framework\Controller\Result\Raw;
 use Magento\Framework\Controller\Result\RawFactory;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\MegaMenu\Model\Config;
-use Softaware\MegaMenu\Model\Item;
-use Softaware\MegaMenu\Model\ItemFactory;
-use Softaware\MegaMenu\Model\Menu\ContentRenderer;
-use Softaware\MegaMenu\Model\ResourceModel\Item as ItemResource;
-use Softaware\MegaMenu\Model\Schedule;
+use CommerceGears\MegaMenu\Model\Config;
+use CommerceGears\MegaMenu\Model\Item;
+use CommerceGears\MegaMenu\Model\ItemFactory;
+use CommerceGears\MegaMenu\Model\Menu\ContentRenderer;
+use CommerceGears\MegaMenu\Model\ResourceModel\Item as ItemResource;
+use CommerceGears\MegaMenu\Model\Schedule;
 
 /**
  * Content of a lazily loaded dropdown panel. Public and cacheable (full page cache and Varnish), tagged like the menu.

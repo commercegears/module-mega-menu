@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model\Menu;
+namespace CommerceGears\MegaMenu\Model\Menu;
 
 use Magento\Cms\Model\BlockFactory;
 use Magento\Cms\Model\Template\FilterProvider;
@@ -11,7 +11,7 @@ use Magento\Framework\Filesystem;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Psr\Log\LoggerInterface;
-use Softaware\MegaMenu\Model\UrlResolver;
+use CommerceGears\MegaMenu\Model\UrlResolver;
 
 /**
  * Renders the content area of a dropdown panel: image, CMS block and own (Page Builder or HTML) content.
@@ -19,7 +19,7 @@ use Softaware\MegaMenu\Model\UrlResolver;
  */
 class ContentRenderer
 {
-    public const MEDIA_PATH = 'softaware/megamenu';
+    public const MEDIA_PATH = 'commercegears/megamenu';
 
     public function __construct(
         private readonly BlockFactory $blockFactory,
@@ -111,7 +111,7 @@ class ContentRenderer
         try {
             return $this->filterProvider->getBlockFilter()->setStoreId($storeId)->filter($content);
         } catch (\Throwable $e) {
-            $this->logger->error('Softaware_MegaMenu: content could not be rendered: ' . $e->getMessage());
+            $this->logger->error('CommerceGears_MegaMenu: content could not be rendered: ' . $e->getMessage());
             return '';
         }
     }

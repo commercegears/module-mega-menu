@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Controller\Adminhtml\Builder;
+namespace CommerceGears\MegaMenu\Controller\Adminhtml\Builder;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
-use Softaware\MegaMenu\Model\CategoryImporter;
+use CommerceGears\MegaMenu\Model\CategoryImporter;
 
 class ImportCategories extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_MegaMenu::items_save';
+    public const ADMIN_RESOURCE = 'CommerceGears_MegaMenu::items_save';
 
     public function __construct(Context $context, private readonly CategoryImporter $importer)
     {

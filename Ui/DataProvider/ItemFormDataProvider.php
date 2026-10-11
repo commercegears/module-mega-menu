@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Ui\DataProvider;
+namespace CommerceGears\MegaMenu\Ui\DataProvider;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Filesystem;
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Softaware\MegaMenu\Model\Menu\ContentRenderer;
-use Softaware\MegaMenu\Model\ResourceModel\Item\CollectionFactory;
+use CommerceGears\MegaMenu\Model\Menu\ContentRenderer;
+use CommerceGears\MegaMenu\Model\ResourceModel\Item\CollectionFactory;
 
 class ItemFormDataProvider extends AbstractDataProvider
 {
-    public const PERSISTOR_KEY = 'softaware_megamenu_item';
+    public const PERSISTOR_KEY = 'commercegears_megamenu_item';
 
     private ?array $loadedData = null;
 

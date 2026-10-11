@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Block\Adminhtml\Item\Edit;
+namespace CommerceGears\MegaMenu\Block\Adminhtml\Item\Edit;
 
 use Magento\Backend\Block\Widget\Context;
 

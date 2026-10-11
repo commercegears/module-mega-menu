@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model\Source;
+namespace CommerceGears\MegaMenu\Model\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
-use Softaware\MegaMenu\Model\Menu\Icons;
+use CommerceGears\MegaMenu\Model\Menu\Icons;
 
 /**
  * Built-in icons for menu items.

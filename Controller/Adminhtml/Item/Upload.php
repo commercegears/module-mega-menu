@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Controller\Adminhtml\Item;
+namespace CommerceGears\MegaMenu\Controller\Adminhtml\Item;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -11,7 +11,7 @@ use Magento\Framework\Controller\ResultFactory;
 
 class Upload extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_MegaMenu::items_save';
+    public const ADMIN_RESOURCE = 'CommerceGears_MegaMenu::items_save';
 
     public function __construct(Context $context, private readonly ImageUploader $imageUploader)
     {

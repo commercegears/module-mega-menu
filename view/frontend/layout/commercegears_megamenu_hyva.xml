@@ -8,7 +8,7 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="Softaware_MegaMenu::css/mega-menu.css"/>
+        <css src="CommerceGears_MegaMenu::css/mega-menu.css"/>
     </head>
     <body>
         <referenceBlock name="topmenu_mobile" remove="true"/>
@@ -20,7 +20,7 @@
             <action method="setTtl">
                 <argument name="ttl" xsi:type="null"/>
             </action>
-            <block class="Softaware\MegaMenu\Block\Menu" name="softaware.megamenu" template="Softaware_MegaMenu::menu.phtml">
+            <block class="CommerceGears\MegaMenu\Block\Menu" name="commercegears.megamenu" template="CommerceGears_MegaMenu::menu.phtml">
                 <arguments>
                     <argument name="sw_mm_theme" xsi:type="string">hyva</argument>
                 </arguments>

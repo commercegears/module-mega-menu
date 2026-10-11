@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model;
+namespace CommerceGears\MegaMenu\Model;
 
 use Magento\Framework\App\CacheInterface;
 use Magento\Framework\Event\ManagerInterface;

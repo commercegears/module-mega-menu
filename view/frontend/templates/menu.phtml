@@ -1,8 +1,8 @@
 <?php
 /**
- * Mega menu: one render for desktop and mobile, Luma and Hyvä. Behaviour: Softaware_MegaMenu::js/mega-menu.js.
+ * Mega menu: one render for desktop and mobile, Luma and Hyvä. Behaviour: CommerceGears_MegaMenu::js/mega-menu.js.
  *
- * @var \Softaware\MegaMenu\Block\Menu $block
+ * @var \CommerceGears\MegaMenu\Block\Menu $block
  * @var \Magento\Framework\Escaper $escaper
  */
 declare(strict_types=1);
@@ -200,4 +200,4 @@ $renderSub = static function (array $node, int $level) use (&$renderSub, $render
         <div class="sw-mm__backdrop"></div>
     <?php endif ?>
 </nav>
-<script src="<?= $escaper->escapeUrl($block->getViewFileUrl('Softaware_MegaMenu::js/mega-menu.js')) ?>" defer></script>
+<script src="<?= $escaper->escapeUrl($block->getViewFileUrl('CommerceGears_MegaMenu::js/mega-menu.js')) ?>" defer></script>

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Softaware\MegaMenu\Model;
+namespace CommerceGears\MegaMenu\Model;
 
 /**
  * Custom link targets: absolute http(s) addresses as entered, everything else relative to the store's base URL.
