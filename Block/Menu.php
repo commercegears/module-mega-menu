@@ -44,6 +44,8 @@ class Menu extends Template implements IdentityInterface
             (int)$this->_request->isSecure(),
             $this->getTemplate(),
             (string)$this->getData('commercegears_mm_theme'),
+            // Scheduled items and labels change at midnight (store time zone), even if cron has not run yet.
+            $this->_localeDate->scopeDate($this->getStoreId())->format('Y-m-d'),
         ];
     }
 

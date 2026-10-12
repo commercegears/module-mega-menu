@@ -52,7 +52,9 @@ class ContentRenderer
         if ($blockId) {
             $block = $this->blockFactory->create();
             $block->setStoreId($storeId)->load($blockId);
-            if ($block->getId() && $block->isActive()) {
+            $blockStores = array_map('intval', (array)$block->getStores());
+            if ($block->getId() && $block->isActive()
+                && (in_array(0, $blockStores, true) || in_array($storeId, $blockStores, true))) {
                 $identities = array_merge($identities, $block->getIdentities());
                 $html .= '<div class="commercegears-mm__cms">' . $this->filter((string)$block->getContent(), $storeId) . '</div>';
             }

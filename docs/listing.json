@@ -108,7 +108,24 @@
         }
     ],
     "demo": {
-        "storefront": [],
-        "admin": []
+        "storefront": [
+            {
+                "label": "Luma storefront",
+                "url": "https://demo.commercegears.com/",
+                "image": "docs/images/luma-desktop.png"
+            },
+            {
+                "label": "Hyvä storefront",
+                "url": "https://demo.commercegears.com/hyva/",
+                "image": "docs/images/hyva-hamburger.png"
+            }
+        ],
+        "admin": [
+            {
+                "label": "Admin panel",
+                "url": "https://demo.commercegears.com/try-admin/mega-menu",
+                "image": "docs/images/admin-builder.png"
+            }
+        ]
     }
 }

@@ -4,6 +4,9 @@ Mega Menu replaces your theme's top menu on **Luma and Hyvä** with a menu you b
 your own links and CMS pages, dropdowns with columns, CMS blocks or Page Builder content and images, labels, icons,
 dates and a proper mobile menu. This guide covers installation, every setting and day-to-day use.
 
+- Demo, storefront (Luma): https://demo.commercegears.com/
+- Demo, storefront (Hyvä): https://demo.commercegears.com/hyva/
+- Admin demo: https://demo.commercegears.com/try-admin/mega-menu
 - Changelog: [CHANGELOG.md](../CHANGELOG.md) · Questions: [FAQ](faq.md)
 
 ![Mega menu on Luma with an open dropdown](images/luma-desktop.png)
@@ -22,9 +25,12 @@ Hyvä support is part of the same package. There is no separate Hyvä compatibil
 
 ## 2. Installation
 
-With Composer, using the Composer keys from your account on commercegears.com:
+With Composer. Use the Composer keys from your account on commercegears.com (see
+https://commercegears.com/composer-access/):
 
 ```bash
+composer config repositories.commercegears composer https://repo.commercegears.com
+composer config --auth http-basic.repo.commercegears.com PUBLIC_KEY PRIVATE_KEY
 composer require commercegears/module-mega-menu
 bin/magento setup:upgrade
 bin/magento setup:di:compile            # production mode only
