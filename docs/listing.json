@@ -111,12 +111,12 @@
         "storefront": [
             {
                 "label": "Luma storefront",
-                "url": "https://demo.commercegears.com/",
+                "url": "https://demo.commercegears.com/?tour=mega-menu",
                 "image": "docs/images/luma-desktop.png"
             },
             {
                 "label": "Hyvä storefront",
-                "url": "https://demo.commercegears.com/hyva/",
+                "url": "https://demo.commercegears.com/hyva/?tour=mega-menu",
                 "image": "docs/images/hyva-hamburger.png"
             }
         ],

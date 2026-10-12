@@ -4,8 +4,8 @@ Mega Menu replaces your theme's top menu on **Luma and Hyvä** with a menu you b
 your own links and CMS pages, dropdowns with columns, CMS blocks or Page Builder content and images, labels, icons,
 dates and a proper mobile menu. This guide covers installation, every setting and day-to-day use.
 
-- Demo, storefront (Luma): https://demo.commercegears.com/
-- Demo, storefront (Hyvä): https://demo.commercegears.com/hyva/
+- Demo, storefront (Luma): https://demo.commercegears.com/?tour=mega-menu
+- Demo, storefront (Hyvä): https://demo.commercegears.com/hyva/?tour=mega-menu
 - Admin demo: https://demo.commercegears.com/try-admin/mega-menu
 - Changelog: [CHANGELOG.md](../CHANGELOG.md) · Questions: [FAQ](faq.md)
 
