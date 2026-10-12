@@ -73,7 +73,7 @@ CommerceGears > Mega Menu: Menu Builder (Add and Edit Items, Delete Items) and S
 
 ## Compatibility
 
-- Magento Open Source and Adobe Commerce 2.4.7 to 2.4.9, PHP 8.2 to 8.5
+- Magento Open Source and Adobe Commerce 2.4.6 to 2.4.9, PHP 8.2 to 8.5 (Magento 2.4.6: PHP 8.2)
 - Luma, Blank and their child themes; Hyvä 1.3+ (tested with 1.5)
 - `commercegears/module-core` ^2.0
 - Optional: Magento Page Builder for dropdown content
