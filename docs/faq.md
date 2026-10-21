@@ -1,7 +1,7 @@
 # Mega Menu for Magento 2: FAQ
 
 **Does it work with Hyvä?**
-Yes. Hyvä support is in the same package, there is no extra module to buy or install. The module recognises themes
+Yes. Hyvä support is in the same package, there is no extra module to install. The module recognises themes
 based on a `Hyva/*` theme and replaces Hyvä's menu in the header (tested with Hyvä 1.5). Luma, Blank and their child
 themes are supported too.
 
@@ -58,3 +58,7 @@ No. The menu is the same for every visitor of a store view, which keeps it fully
 **Which permissions are there?**
 Menu Builder (with separate rights to add and edit items and to delete items) and Settings, under CommerceGears >
 Mega Menu in the admin user roles.
+
+**Is Mega Menu free?**
+Yes. Mega Menu is free to download from commercegears.com and is installed with Composer like our other modules.
+It needs `commercegears/module-core`, which Composer installs automatically.

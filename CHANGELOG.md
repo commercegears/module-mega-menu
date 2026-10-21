@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.3 (2026-10-21)
+- Improvement: the module is now free.
+
 ## 1.0.2 (2026-10-12)
 - Improvement: compatible with Magento 2.4.6 (PHP 8.2).
 
